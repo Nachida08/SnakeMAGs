@@ -9,7 +9,7 @@ SnakeMAGs was designed to build a Termite Data Base (TDB) which contains the gen
 ## Install conda
 The easiest way to install and run SnakeMAGs is to use [conda](https://www.anaconda.com/products/distribution). These package managers will help you to easily install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html).
 
-## Install Snakemake
+## Install and activate Snakemake environement
 ```
 conda activate
 conda create --prefix path/to/env/SNAKEMAKE
@@ -120,4 +120,14 @@ ressources_gtdb: "mem=500, mem_mb=500000"                              #Memory a
 ##############################
 threads_coverM: 16                                                     #The number of threads to run this process. To be adjusted according to your hardware
 ressources_coverM: 500                                                 #Memory according to tools need
+```
+# Run SnakeMAGs
+If you are using a workstation with Ubuntu (tested on Ubuntu 22.04):
+```{bash}
+snakemake --cores 30 --snakefile SnakeMAGs.smk --use-conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --configfile /path/to/config.yaml --keep-going --latency-wait 180
+```
+
+If you are working on a cluster with Slurm (test with version 18.08.7):
+```{bash}
+snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
