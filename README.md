@@ -18,7 +18,7 @@ conda activate path/to/env/SNAKEMAKE/
 ```
 ## SnakeMAGs input files
 - Illumina paired-end reads in FASTQ.
-- Adapter sequence file ([adapter.fa]()).
+- Adapter sequence file ([adapter.fa](https://github.com/Nachida08/SnakeMAGs/blob/main/adapters.fa)).
 - Host genome sequences (if host_genome: "yes")
 
 ## Edit config file
@@ -51,7 +51,8 @@ suffix_2: "_2"                                                           #Main t
 ########################
 ### Conda environnemnts
 ##########################
-IU_conda_env: "/path/to/SnakeMAGs_conda_env/IU.yaml"
+ 
+IU_conda_env: "/path/to/SnakeMAGs_conda_env/IU.yaml"                     #Available in
 TRIMMOMATIC_conda_env: "/path/to/SnakeMAGs_conda_env/TRIMMOMATIC.yaml"
 BOWTIE2_conda_env: "/path/to/SnakeMAGs_conda_env/BOWTIE2.yaml"
 SAMTOOLS_conda_env: "/path/to/SnakeMAGs_conda_env/SAMTOOLS.yaml"
