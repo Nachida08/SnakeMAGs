@@ -1,4 +1,4 @@
-# SnakeMAGs
+# About SnakeMAGs
 SnakeMAGs is a workflow to reconstruct prokaryotic genomes from metagenomes. The main purpose of SnakeMAGs is to process Illumina data from raw reads to metagenome-assembled genomes (MAGs).
 SnakeMAGs is efficient, easy to handle and flexible to different projects. The workflow is CeCILL licensed, implemented in Snakemake (run on multiple cores) and available for Linux.
 SnakeMAGs was designed to build a Termite Data Base (TDB) which contains the genomes of termite-associates micro-organisms.
@@ -16,6 +16,8 @@ conda create --prefix path/to/env/SNAKEMAKE
 conda install -c bioconda snakemake --prefix path/to/env/SNAKEMAKE
 conda activate path/to/env/SNAKEMAKE/
 ```
+## SnakeMAGs input files
+
 ## Edit config file
 You need to edit the config.yaml file. In particular, you need to set the correct paths and allocate the proper computational resources (threads, memory), according to your hardware. 
 
@@ -39,7 +41,7 @@ Here is an exemple of a config file:
 #########################
 
 working_dir: /path/to/working/directory/                                 #The main directory for the project
-raw_fastq: /usr/home/biopatic-DATA/tadrent/SnakeMAGs/raw_fastq/          #The directory that contains all the fastq files of all the samples (eg. sample1_R1.fastq & sample1_R2.fastq, sample2_R1.fastq & sample2_R2.fastq...)
+raw_fastq: /path/to/raw_fastq/                                           #The directory that contains all the fastq files of all the samples (eg. sample1_R1.fastq & sample1_R2.fastq, sample2_R1.fastq & sample2_R2.fastq...)
 suffix_1: "_1"                                                           #Main type of suffix for forword reads file (_1.fastq or _R1.fastq or _r1.fastq or _1.fq or _R1.fq or _r1.fq )
 suffix_2: "_2"                                                           #Main type of suffix for reverse reads file (_2.fastq or _R2.fastq or _r2.fastq or _2.fq or _R2.fq or _r2.fq )
 
@@ -131,3 +133,15 @@ If you are working on a cluster with Slurm (test with version 18.08.7):
 ```{bash}
 snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
+
+#Test
+
+#Citations
+
+If you use SnakeMAGs, please cite:
+
+Please also cite the dependencies:
+
+#License
+This project is licensed under the CeCILL License - see the [LICENSE]() file for details
+
