@@ -17,6 +17,9 @@ conda install -c bioconda snakemake --prefix path/to/env/SNAKEMAKE
 conda activate path/to/env/SNAKEMAKE/
 ```
 ## SnakeMAGs input files
+- Illumina paired-end reads in FASTQ.
+- Adapter sequence file ([adapter.fa]()).
+- Host genome sequences (if host_genome: "yes")
 
 ## Edit config file
 You need to edit the config.yaml file. In particular, you need to set the correct paths and allocate the proper computational resources (threads, memory), according to your hardware. 
@@ -134,14 +137,25 @@ If you are working on a cluster with Slurm (test with version 18.08.7):
 snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
 
-#Test
+# Test
 
-#Citations
+# Citations
 
 If you use SnakeMAGs, please cite:
 
 Please also cite the dependencies:
+- illumina-utils
+- Trimmomatic
+- Bowtie2
+- SAMtools
+- BEDtools
+- MEGAHIT
+- bwa
+- MetaBAT2
+- CheckM
+- GTDB-Tk
+- CoverM
 
-#License
-This project is licensed under the CeCILL License - see the [LICENSE]() file for details
+# License
+This project is licensed under the CeCILL License - see the [LICENSE](https://github.com/Nachida08/SnakeMAGs/blob/main/LICENCE) file for details.
 
