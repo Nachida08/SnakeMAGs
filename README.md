@@ -157,7 +157,7 @@ Please also cite the dependencies:
 - [MetaBAT2](https://doi.org/10.7717/peerj.7359) : Kang, D. D., Li, F., Kirton, E., Thomas, A., Egan, R., An, H., & Wang, Z. (2019). MetaBAT 2: An adaptive binning algorithm for robust and efficient genome reconstruction from metagenome assemblies. PeerJ, 2019(7), 1–13. 
 - [CheckM](https://doi.org/10.1101/gr.186072.114) : Parks, D. H., Imelfort, M., Skennerton, C. T., Hugenholtz, P., & Tyson, G. W. (2015). CheckM: Assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25(7), 1043–1055. 
 - [GTDB-Tk](https://doi.org/10.1093/bioinformatics/btz848) : Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2020). GTDB-Tk: A toolkit to classify genomes with the genome taxonomy database. Bioinformatics, 36(6), 1925–1927. 
-- [CoverM]
+- [CoverM](https://github.com/wwood/CoverM)
 
 # License
 This project is licensed under the CeCILL License - see the [LICENSE](https://github.com/Nachida08/SnakeMAGs/blob/main/LICENCE) file for details.
