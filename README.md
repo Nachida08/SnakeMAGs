@@ -140,23 +140,26 @@ snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --m
 
 # Test
 
+*Note: the analysis of this files may take a while. For instance, it took 100 minutes to complete using 4 threads on a Ubuntu 14.04.3 LTS with an Intel(R) Core(TM) i5 @ 2.20GHz processor, 16GB of RAM and SSD disk.*
+
 # Citations
 
 If you use SnakeMAGs, please cite:
 
 Please also cite the dependencies:
-- illumina-utils
-- Trimmomatic
-- Bowtie2
-- SAMtools
-- BEDtools
-- MEGAHIT
-- bwa
-- MetaBAT2
-- CheckM
-- GTDB-Tk
-- CoverM
+- [illumina-utils](https://doi.org/10.1371/journal.pone.0066643) : Murat Eren, A., Vineis, J. H., Morrison, H. G., & Sogin, M. L. (2013). A Filtering Method to Generate High Quality Short Reads Using Illumina Paired-End Technology. 
+- [Trimmomatic](https://doi.org/10.1093/bioinformatics/btu170) : Bolger, A. M., Lohse, M., & Usadel, B. (2014). Genome analysis Trimmomatic: a flexible trimmer for Illumina sequence data. 30(15), 2114–2120. 
+- [Bowtie2](https://doi.org/10.1038/nmeth.1923) : Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. Nature Methods, 9(4), 357–359.
+- [SAMtools](https://doi.org/10.1093/bioinformatics/btp352) : Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., & Durbin, R. (2009). The Sequence Alignment/Map format and SAMtools. Bioinformatics, 25(16), 2078–2079. 
+- [BEDtools](https://doi.org/10.1093/bioinformatics/btq033) : Quinlan, A. R., & Hall, I. M. (2010). BEDTools: A flexible suite of utilities for comparing genomic features. Bioinformatics, 26(6), 841–842.
+- [MEGAHIT](https://doi.org/10.1093/bioinformatics/btv033) : Li, D., Liu, C. M., Luo, R., Sadakane, K., & Lam, T. W. (2015). MEGAHIT: An ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics, 31(10), 1674–1676. 
+- [bwa](https://doi.org/10.1093/bioinformatics/btp324) : Li, H., & Durbin, R. (2009). Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics, 25(14), 1754–1760. 
+- [MetaBAT2](https://doi.org/10.7717/peerj.7359) : Kang, D. D., Li, F., Kirton, E., Thomas, A., Egan, R., An, H., & Wang, Z. (2019). MetaBAT 2: An adaptive binning algorithm for robust and efficient genome reconstruction from metagenome assemblies. PeerJ, 2019(7), 1–13. 
+- [CheckM](https://doi.org/10.1101/gr.186072.114) : Parks, D. H., Imelfort, M., Skennerton, C. T., Hugenholtz, P., & Tyson, G. W. (2015). CheckM: Assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25(7), 1043–1055. 
+- [GTDB-Tk](https://doi.org/10.1093/bioinformatics/btz848) : Chaumeil, P. A., Mussig, A. J., Hugenholtz, P., & Parks, D. H. (2020). GTDB-Tk: A toolkit to classify genomes with the genome taxonomy database. Bioinformatics, 36(6), 1925–1927. 
+- [CoverM]
 
 # License
 This project is licensed under the CeCILL License - see the [LICENSE](https://github.com/Nachida08/SnakeMAGs/blob/main/LICENCE) file for details.
 
+Developed by Nachida Tadrent at the Insect Biology Research Institute ([IRBI](https://irbi.univ-tours.fr/))
