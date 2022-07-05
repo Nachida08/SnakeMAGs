@@ -142,7 +142,7 @@ snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --m
 If you use SnakeMAGs, please cite:
 
 ```
-Nachida Tadrent, Franck Dedeine, Vincent Hervé (In preparation). *SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes. 
+Nachida Tadrent, Franck Dedeine, Vincent Hervé (In preparation). SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes. 
 ```
 
 Please also cite the dependencies:
