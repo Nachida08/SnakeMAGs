@@ -141,8 +141,9 @@ snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --m
 
 If you use SnakeMAGs, please cite:
 
+```
 Nachida Tadrent, Franck Dedeine, Vincent Hervé (In preparation). *SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes. 
-
+```
 
 Please also cite the dependencies:
 - [illumina-utils](https://doi.org/10.1371/journal.pone.0066643) : Murat Eren, A., Vineis, J. H., Morrison, H. G., & Sogin, M. L. (2013). A Filtering Method to Generate High Quality Short Reads Using Illumina Paired-End Technology. *PloS ONE*, 8(6), e66643.
