@@ -2,7 +2,7 @@
 SnakeMAGs is a workflow to reconstruct prokaryotic genomes from metagenomes. The main purpose of SnakeMAGs is to process Illumina data from raw reads to metagenome-assembled genomes (MAGs).
 SnakeMAGs is efficient, easy to handle and flexible to different projects. The workflow is CeCILL licensed, implemented in Snakemake (run on multiple cores) and available for Linux.
 
-![scheme of workflow](SnakeMAGs_schema.png?raw=true)
+![scheme of workflow](SnakeMAGs_schema.jpg?raw=true)
 
 # How to use SnakeMAGs
 ## Install conda
