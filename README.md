@@ -20,6 +20,16 @@ conda activate path/to/env/SNAKEMAKE/
 - Adapter sequence file ([adapter.fa](https://github.com/Nachida08/SnakeMAGs/blob/main/adapters.fa)).
 - Host genome sequences in FASTA (if host_genome: "yes")
 
+## Download GENOME TAXONOMY DATABASE (GTDB)
+GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and unarchived.
+```
+#Download the latest release (tested with release207)
+wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
+#Decompress
+tar -xzvf *tar.gz
+```
+All you have to do now is to indicate the path to the data base folder in the config file, Classification section.
+
 ## Edit config file
 You need to edit the config.yaml file. In particular, you need to set the correct paths and allocate the proper computational resources (threads, memory), according to your hardware. 
 
@@ -68,7 +78,7 @@ COVERM_conda_env: "/path/to/SnakeMAGs_conda_env/COVERM.yaml"
 #########################
 email: name.surname@your-univ.com                                        #Your e-mail address
 threads_filter: 10                                                       #The number of threads to run this process. To be adjusted according to your hardware
-ressources_filter: "mem=500, mem_mb=500000"                              #Memory according to tools need
+ressources_filter: 500                                                   #Memory according to tools need
 
 ########################
 ### Adapter trimming ###
@@ -76,7 +86,7 @@ ressources_filter: "mem=500, mem_mb=500000"                              #Memory
 adapters: /path/to/working/directory/adapters.fa                         #A fasta file contanning a set of various Illumina adaptors (this file is provided and is also available on github)
 trim_params: "2:40:15"                                                   #For further details, see the trimmomatic documentation
 threads_trim: 10                                                         #The number of threads to run this process. To be adjusted according to your hardware
-ressources_trim: "mem=500, mem_mb=500000"                                #Memory according to tools need
+ressources_trim: 500                                #Memory according to tools need
 
 ######################
 ### Host filtering ###
@@ -86,7 +96,7 @@ threads_bowtie2: 100                                                    #The num
 host_genomes_directrory: /path/to/working/host_genomes/                 #the directory where the host genome is stored
 host_genomes: /path/to/working/host_genomes/host_genomes.fa             #A fasta file containing the DNA sequences of the host genome(s)
 threads_samtools: 100                                                   #The number of threads to run this process. To be adjusted according to your hardware
-ressources_host_filtering: "mem=500, mem_mb=500000"                     #Memory according to tools need
+ressources_host_filtering: 500                                          #Memory according to tools need
 
 ################
 ### Assembly ###
@@ -94,31 +104,32 @@ ressources_host_filtering: "mem=500, mem_mb=500000"                     #Memory 
 threads_megahit: 150                                                   #The number of threads to run this process. To be adjusted according to your hardware
 min_contig_len: 1000                                                   #Minimum length (in bp) of the assembled contigs
 k_list: "21,31,41,51,61,71,81,91,99,109,119"                           #Kmer size (for further details, see the megahit documentation)
-ressources_megahit: "mem=500, mem_mb=500000"                           #Memory according to tools need
+ressources_megahit: 500                                                #Memory according to tools need
 
 ###############
 ### Binning ###
 ###############
 threads_bwa: 150                                                       #The number of threads to run this process. To be adjusted according to your hardware
-ressources_bwa: "mem=500, mem_mb=500000"                               #Memory according to tools need
+ressources_bwa: 500                                                    #Memory according to tools need
 threads_samtools: 150                                                  #The number of threads to run this process. To be adjusted according to your hardware
-ressources_samtools: "mem=500, mem_mb=500000"                          #Memory according to tools need
+ressources_samtools: 500                                               #Memory according to tools need
 seed: 19860615                                                         #Seed number for reproducible results
 threads_metabat: 150                                                   #The number of threads to run this process. To be adjusted according to your hardware
 minContig: 2500                                                        #Minimum length (in bp) of the contigs
-ressources_binning: "mem=500, mem_mb=500000"                           #Memory according to tools need
+ressources_binning: 500                                                #Memory according to tools need
 
 ####################
 ### Bins quality ###
 ####################
 threads_checkm: 150                                                    #The number of threads to run this process. To be adjusted according to your hardware
-ressources_checkm: "mem=500, mem_mb=500000"                            #Memory according to tools need
+ressources_checkm: 500                                                 #Memory according to tools need
 
 ######################
 ### Classification ###
 ######################
+GTDB_data_ref: /path/to/downloaded/GTDB                                #Path to uncompressed GTDB-Tk reference data (GTDB)
 threads_gtdb: 16                                                       #The number of threads to run this process. To be adjusted according to your hardware
-ressources_gtdb: "mem=500, mem_mb=500000"                              #Memory according to tools need
+ressources_gtdb: 500                                                   #Memory according to tools need
 
 ##################
 ### Abundances ###
@@ -132,7 +143,7 @@ If you are using a workstation with Ubuntu (tested on Ubuntu 22.04):
 snakemake --cores 30 --snakefile SnakeMAGs.smk --use-conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --configfile /path/to/config.yaml --keep-going --latency-wait 180
 ```
 
-If you are working on a cluster with Slurm (test with version 18.08.7):
+If you are working on a cluster with Slurm (tested with version 18.08.7):
 ```{bash}
 snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
