@@ -20,7 +20,7 @@ conda activate path/to/env/SNAKEMAKE/
 - Adapter sequence file ([adapter.fa](https://github.com/Nachida08/SnakeMAGs/blob/main/adapters.fa)).
 - Host genome sequences in FASTA (if host_genome: "yes")
 
-## Download GENOME TAXONOMY DATABASE (GTDB)
+## Download Genome Taxonomy Database (GTDB)
 GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and unarchived.
 ```
 #Download the latest release (tested with release207)
