@@ -53,6 +53,4 @@ dependencies:
   - xz=5.2.5=h516909a_1
   - zlib=1.2.12=h166bdaf_0
   - zstd=1.4.9=ha95c52a_0
-variables:
-  GTDBTK_DATA_PATH: /usr/home/biopatic-Softwares/tadrent/GTDBTK/release207_v2
 prefix: /usr/home/biopatic-Softwares/tadrent/GTDBTK
