@@ -9,6 +9,7 @@ SnakeMAGs is efficient, easy to handle and flexible to different projects. The w
 The easiest way to install and run SnakeMAGs is to use [conda](https://www.anaconda.com/products/distribution). These package managers will help you to easily install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html).
 
 ## Install and activate Snakemake environement
+Note: The workflow was developed with Snakemake 7.0.0
 ```
 conda activate
 conda create --prefix path/to/env/SNAKEMAKE
@@ -157,6 +158,7 @@ If you use SnakeMAGs, please cite:
 > Nachida Tadrent, Franck Dedeine, Vincent Hervé (In preparation). SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes.
 
 Please also cite the dependencies:
+- [Snakemake](https://f1000research.com/articles/10-33/v1) : Mölder, F., Jablonski, K. P., Letcher, B., Hall, M. B., Tomkins-tinch, C. H., Sochat, V., Forster, J., Lee, S., Twardziok, S. O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., Nahnsen, S., & Köster, J. (2021). Sustainable data analysis with Snakemake [ version 1 ; peer review : 1 approved , 1 approved with reservations ]. *F1000Research*, May, 1–25.
 - [illumina-utils](https://doi.org/10.1371/journal.pone.0066643) : Murat Eren, A., Vineis, J. H., Morrison, H. G., & Sogin, M. L. (2013). A Filtering Method to Generate High Quality Short Reads Using Illumina Paired-End Technology. *PloS ONE*, 8(6), e66643.
 - [Trimmomatic](https://doi.org/10.1093/bioinformatics/btu170) : Bolger, A. M., Lohse, M., & Usadel, B. (2014). Genome analysis Trimmomatic: a flexible trimmer for Illumina sequence data. *Bioinformatics*, 30(15), 2114-2120.
 - [Bowtie2](https://doi.org/10.1038/nmeth.1923) : Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. *Nature Methods*, 9(4), 357–359.
