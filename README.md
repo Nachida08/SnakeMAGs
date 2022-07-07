@@ -87,7 +87,7 @@ ressources_filter: 500                                                   #Memory
 adapters: /path/to/working/directory/adapters.fa                         #A fasta file contanning a set of various Illumina adaptors (this file is provided and is also available on github)
 trim_params: "2:40:15"                                                   #For further details, see the trimmomatic documentation
 threads_trim: 10                                                         #The number of threads to run this process. To be adjusted according to your hardware
-ressources_trim: 500                                #Memory according to tools need
+ressources_trim: 500                                                     #Memory according to tools need
 
 ######################
 ### Host filtering ###
@@ -159,7 +159,7 @@ If you use SnakeMAGs, please cite:
 > Nachida Tadrent, Franck Dedeine, Vincent Hervé (In preparation). SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes.
 
 Please also cite the dependencies:
-- [Snakemake](https://f1000research.com/articles/10-33/v1) : Mölder, F., Jablonski, K. P., Letcher, B., Hall, M. B., Tomkins-tinch, C. H., Sochat, V., Forster, J., Lee, S., Twardziok, S. O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., Nahnsen, S., & Köster, J. (2021). Sustainable data analysis with Snakemake [ version 1 ; peer review : 1 approved , 1 approved with reservations ]. *F1000Research*, May, 1–25.
+- [Snakemake](https://f1000research.com/articles/10-33/v1) : Mölder, F., Jablonski, K. P., Letcher, B., Hall, M. B., Tomkins-tinch, C. H., Sochat, V., Forster, J., Lee, S., Twardziok, S. O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., Nahnsen, S., & Köster, J. (2021). Sustainable data analysis with Snakemake. *F1000Research*, May, 1–25.
 - [illumina-utils](https://doi.org/10.1371/journal.pone.0066643) : Murat Eren, A., Vineis, J. H., Morrison, H. G., & Sogin, M. L. (2013). A Filtering Method to Generate High Quality Short Reads Using Illumina Paired-End Technology. *PloS ONE*, 8(6), e66643.
 - [Trimmomatic](https://doi.org/10.1093/bioinformatics/btu170) : Bolger, A. M., Lohse, M., & Usadel, B. (2014). Genome analysis Trimmomatic: a flexible trimmer for Illumina sequence data. *Bioinformatics*, 30(15), 2114-2120.
 - [Bowtie2](https://doi.org/10.1038/nmeth.1923) : Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. *Nature Methods*, 9(4), 357–359.
@@ -175,4 +175,4 @@ Please also cite the dependencies:
 # License
 This project is licensed under the CeCILL License - see the [LICENSE](https://github.com/Nachida08/SnakeMAGs/blob/main/LICENCE) file for details.
 
-Developed by Nachida Tadrent at the Insect Biology Research Institute ([IRBI](https://irbi.univ-tours.fr/))
+Developed by Nachida Tadrent at the Insect Biology Research Institute ([IRBI](https://irbi.univ-tours.fr/)), under the supervision of Franck Dedeine and Vincent Hervé.
