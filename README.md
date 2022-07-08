@@ -55,8 +55,8 @@ Here is an exemple of a config file:
 
 working_dir: /path/to/working/directory/                                 #The main directory for the project
 raw_fastq: /path/to/raw_fastq/                                           #The directory that contains all the fastq files of all the samples (eg. sample1_R1.fastq & sample1_R2.fastq, sample2_R1.fastq & sample2_R2.fastq...)
-suffix_1: "_1"                                                           #Main type of suffix for forword reads file (_1.fastq or _R1.fastq or _r1.fastq or _1.fq or _R1.fq or _r1.fq )
-suffix_2: "_2"                                                           #Main type of suffix for reverse reads file (_2.fastq or _R2.fastq or _r2.fastq or _2.fq or _R2.fq or _r2.fq )
+suffix_1: "_R1.fastq"                                                    #Main type of suffix for forword reads file (eg. _1.fastq or _R1.fastq or _r1.fastq or _1.fq or _R1.fq or _r1.fq )
+suffix_2: "_R2.fastq"                                                    #Main type of suffix for reverse reads file (eg. _2.fastq or _R2.fastq or _r2.fastq or _2.fq or _R2.fq or _r2.fq )
 
 ###########################
 ### Conda environnemnts ###
