@@ -19,17 +19,17 @@ conda activate path/to/env/SNAKEMAKE/
 ## SnakeMAGs input files
 - Illumina paired-end reads in FASTQ.
 - Adapter sequence file ([adapter.fa](https://github.com/Nachida08/SnakeMAGs/blob/main/adapters.fa)).
-- Host genome sequences in FASTA (if host_genome: "yes")
+- Host genome sequences in FASTA (if host_genome: "yes"), in case you work with host-associated metagenomes (e.g. human gut metagenome).
 
 ## Download Genome Taxonomy Database (GTDB)
-GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and unarchived.
+GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and unarchived. Because this database is voluminous, we let you decide where you want to store it.
 ```
 #Download the latest release (tested with release207)
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
 #Decompress
 tar -xzvf *tar.gz
 ```
-All you have to do now is to indicate the path to the data base folder in the config file, Classification section.
+All you have to do now is to indicate the path to the database folder in the config file, Classification section.
 
 ## Edit config file
 You need to edit the config.yaml file. In particular, you need to set the correct paths and allocate the proper computational resources (threads, memory), according to your hardware. 
@@ -156,7 +156,7 @@ Note: the analysis of this files may take a while. For instance, it took 100 min
 # Citations
 
 If you use SnakeMAGs, please cite:
-> Nachida Tadrent, Franck Dedeine, Vincent Hervé (In preparation). SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes.
+> Nachida Tadrent, Franck Dedeine, Vincent Hervé (*In preparation*). SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes.
 
 Please also cite the dependencies:
 - [Snakemake](https://f1000research.com/articles/10-33/v1) : Mölder, F., Jablonski, K. P., Letcher, B., Hall, M. B., Tomkins-tinch, C. H., Sochat, V., Forster, J., Lee, S., Twardziok, S. O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., Nahnsen, S., & Köster, J. (2021). Sustainable data analysis with Snakemake. *F1000Research*, May, 1–25.
