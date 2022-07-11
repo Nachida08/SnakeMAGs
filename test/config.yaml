@@ -1,0 +1,101 @@
+#####################################################################################################
+#####  _____    ___    _              _   _    ______   __    __              _______   _____   #####
+##### /  ___|  |   \  | |     /\     | | / /  |  ____| |  \  /  |     /\     /  _____| /  ___|  #####
+##### | (___   | |\ \ | |    /  \    | |/ /   | |____  |   \/   |    /  \    | |   __  | (___   #####
+#####  \___ \  | | \ \| |   / /\ \   | |\ \   |  ____| | |\  /| |   / /\ \   | |  |_ |  \___ \  #####
+#####  ____) | | |  \   |  / /__\ \  | | \ \  | |____  | | \/ | |  / /__\ \  | |____||  ____) | #####   
+##### |_____/  |_|   \__| /_/    \_\ |_|  \_\ |______| |_|    |_| /_/    \_\  \______/ |_____/  #####
+#####                                                                                           #####
+#####################################################################################################
+
+########################
+## Execution parameters
+#########################
+
+working_dir: /home/irbi/test_SnakeMAGs/                                 #The main directory for the project
+raw_fastq: /home/irbi/test_SnakeMAGs/fastqs/          #The directory that contains all the fastq files of all the samples (eg. sample1_R1.fastq & sample1_R2.fastq, sample2_R1.fastq & sample2_R2.fastq...)
+suffix_1: "_R1.fastq"                                                           #Main type of suffix for forword reads file (_1.fastq or _R1.fastq or _r1.fastq or _1.fq or _R1.fq or _r1.fq )
+suffix_2: "_R2.fastq"                                                           #Main type of suffix for reverse reads file (_2.fastq or _R2.fastq or _r2.fastq or _2.fq or _R2.fq or _r2.fq )
+
+########################
+### Conda environnemnts
+##########################
+IU_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/IU.yaml"
+TRIMMOMATIC_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/TRIMMOMATIC.yaml"
+BOWTIE2_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/BOWTIE2.yaml"
+SAMTOOLS_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/SAMTOOLS.yaml"
+BEDTOOLS_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/BEDTOOLS.yaml"
+MEGAHIT_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/MEGAHIT.yaml"
+BWA_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/BWA.yaml"
+METABAT2_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/METABAT2.yaml"
+CHECKM_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/CHECKM.yaml"
+GTDBTK_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/GTDBTK.yaml"
+COVERM_conda_env: "/home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/COVERM.yaml"
+
+########################
+### Quality filtering
+##########################
+email: nachida.tadrent@univ-tours.fr                                     #Your e-mail addresse 
+threads_filter: 30                                                       #The number of threads to run this process. To be adjusted according to your hardware
+ressources_filter: 80
+
+##########################
+### Adapter trimming
+##########################
+adapters: /home/irbi/test_SnakeMAGs/adapters.fa          #A fasta file contanning a set of various Illumina adaptors (this file is provided and is also available on github)  
+trim_params: "2:40:15"                                                   #for further details, see the trimmomatic documentation 
+threads_trim: 30                                                         #The number of threads to run this process. To be adjusted according to your hardware
+ressources_trim: 80
+
+##########################
+#### Host filtering
+###########################
+host_genome: "yes"                                                      #yes or no. An optional step for host-associated samples (eg. termite, human, plant...) 
+threads_bowtie2: 30                                                    #The number of threads to run this process. To be adjusted according to your hardware
+host_genomes_directrory: /home/irbi/test_SnakeMAGs/host_genomes/                 #the directory where the host genome is stored
+host_genomes: /home/irbi/test_SnakeMAGs/host_genomes/chr19.fa             #A fasta file containing the DNA sequences of the host genome(s)
+threads_samtools: 30                                                   #The number of threads to run this process. To be adjusted according to your hardware
+ressources_host_filtering: 80
+
+##########################
+##### Assembly
+############################
+threads_megahit: 30                                                   #The number of threads to run this process. To be adjusted according to your hardware
+min_contig_len: 1000                                                   #Minimum length (in bp) of the assembled contigs 
+k_list: "21,31,41,51,61,71,81,91,99,109,119"                           #Kmer size (for further details, see the megahit documentation)
+ressources_megahit: 90
+
+##########################
+###### Binning
+#############################
+threads_bwa: 30                                                       #The number of threads to run this process. To be adjusted according to your hardware
+ressources_bwa: 80
+threads_samtools: 30                                                  #The number of threads to run this process. To be adjusted according to your hardware
+ressources_samtools: 80
+seed: 19860615                                                         #Seed number for reproducible results
+threads_metabat: 30                                                   #The number of threads to run this process. To be adjusted according to your hardware
+minContig: 2500                                                        #Minimum length (in bp) of the contigs 
+ressources_binning: 80
+
+##########################
+####### Bins quality
+##############################
+threads_checkm: 30                                                    #The number of threads to run this process. To be adjusted according to your hardware
+ressources_checkm: 80
+
+##########################
+######## Classification
+###############################
+threads_gtdb: 30                                                       #The number of threads to run this process. To be adjusted according to your hardware
+ressources_gtdb: 80
+GTDB_data_ref: /home/irbi/test_SnakeMAGs/SnakeMAGs_conda_env_2/96e52340/share/gtdbtk-2.1.0/db/ #Path to uncompressed GTDB-Tk reference data (GTDB)
+##########################
+####### Abundances
+##############################
+threads_coverM: 30                                                     #The number of threads to run this process. To be adjusted according to your hardware
+ressources_coverM: 80
+
+
+
+
+
