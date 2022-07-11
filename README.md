@@ -26,6 +26,17 @@ conda create --prefix path/to/env/SNAKEMAKE
 conda install -c bioconda snakemake --prefix path/to/env/SNAKEMAKE
 conda activate path/to/env/SNAKEMAKE/
 ```
+
+## SnakeMAGs executable
+The easiest way to procure SnakeMAGs and its related files is to clone the repository using git:
+```
+git clone https://github.com/Nachida08/SnakeMAGs.git
+```
+Alternatively, you can download the relevant files:
+```
+wget https://github.com/Nachida08/SnakeMAGs/blob/main/SnakeMAGs.smk https://github.com/Nachida08/SnakeMAGs/blob/main/config.yaml https://github.com/Nachida08/SnakeMAGs/blob/main/config.yaml
+```
+
 ## SnakeMAGs input files
 - Illumina paired-end reads in FASTQ.
 - Adapter sequence file ([adapter.fa](https://github.com/Nachida08/SnakeMAGs/blob/main/adapters.fa)).
@@ -158,10 +169,19 @@ If you are working on a cluster with Slurm (tested with version 18.08.7):
 ```{bash}
 snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
-# Test (in progress)
+# Test
 We provide you a small data set in the [test](https://github.com/Nachida08/SnakeMAGs/tree/main/test) directory which will allow you to validate your instalation and take your first steps with SnakeMAGs. This data set is a subset from [ ZymoBiomics Mock Community](https://www.zymoresearch.com/blogs/blog/zymobiomics-microbial-standards-optimize-your-microbiomics-workflow) (250K reads) used in this tutoriel [metagenomics_tutorial](https://github.com/pjtorres/metagenomics_tutorial). 
 
-Note: the analysis of this files may take a while. For instance, it took 100 minutes to complete using 4 threads on a Ubuntu 14.04.3 LTS with an Intel(R) Core(TM) i5 @ 2.20GHz processor, 16GB of RAM and SSD disk.
+1. Before getting started make sure you have cloned the SnakeMAGs repository or you have downloaded all the necessary files (SnakeMAGs.smk, config.yaml, chr19.fa.gz, insub732_2_R1.fastq.gz, insub732_2_R2.fastq.gz). See the [SnakeMAGs executable](#snakemags-executable) section.
+2. Unzip the fastq files and the host sequences file.
+```
+gunzip insub732_2_R1.fastq.gz insub732_2_R2.fastq.gz chr19.fa.gz
+```
+3. For better organisation put all the read files in the same directory (eg. fastqs) and the host sequences file in a separate directory (eg. host_genomes)
+4. Edit the config file (see [Edit config file](#edit-config-file) section)
+5. Run the test (see [Run SnakeMAGs](run-snakemags) section) 
+
+Note: the analysis of this files took ????? secondes to complete on a Ubuntu 22.04 LTS with an Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz x 40 processor, 96GB of RAM.
 
 # Citations
 
