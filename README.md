@@ -34,7 +34,7 @@ git clone https://github.com/Nachida08/SnakeMAGs.git
 ```
 Alternatively, you can download the relevant files:
 ```
-wget https://github.com/Nachida08/SnakeMAGs/blob/main/SnakeMAGs.smk https://github.com/Nachida08/SnakeMAGs/blob/main/config.yaml https://github.com/Nachida08/SnakeMAGs/blob/main/config.yaml
+wget https://github.com/Nachida08/SnakeMAGs/blob/main/SnakeMAGs.smk https://github.com/Nachida08/SnakeMAGs/blob/main/config.yaml
 ```
 
 ## SnakeMAGs input files
