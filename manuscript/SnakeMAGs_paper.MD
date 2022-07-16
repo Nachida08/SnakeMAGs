@@ -1,5 +1,5 @@
 ---
-title: '*SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes'
+title: '`SnakeMAGs`: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes'
 tags:
   - Snakemake
   - metagenomics
