@@ -10,7 +10,7 @@ inputs:
         Path to the main paper Markdown file, relative to the
         project's root directory.
     required: false
-    default: 'paper.md'
+    default: 'SnakeMAGs_paper.MD'
 runs:
   using: docker
   image: 'docker://openjournals/inara:latest'
