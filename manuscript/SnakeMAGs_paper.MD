@@ -35,3 +35,6 @@ bibliography: SnakeMAGs_paper.bib
 
 # Citations
 
+
+# Acknowledgements
+This work was supported by the FEDER grant InFoBioS n°EX011185 (région Val de Loire, France) and the Centre National de la Recherche Scientifique (CNRS). Ph.D. work of Nachida Tradent (Ph.D. scholarship) was funded by the University of Tours.
