@@ -290,7 +290,7 @@ rule bins_quality:
 
 rule classification:
 	input:
-		"{smp}/Bins_quality/{smp}_checkM.final", "GTDB_data/GTDB_data.final"
+		"{smp}/Bins_quality/{smp}_checkM.final"
 	output:
 		"{smp}/Classification/{smp}_classification.final"
 	conda: config['GTDBTK_conda_env']
