@@ -1,6 +1,7 @@
 ---
 title: '`SnakeMAGs`: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes'
 tags:
+  - Python
   - Snakemake
   - metagenomics
   - metagenome-assembled genomes
@@ -30,11 +31,31 @@ bibliography: SnakeMAGs_paper.bib
 ---
 
 # Summary
+Over the last decade, we have observed in microbial ecology a transition from gene-centric to genome-centric analyses [@Prosser:2015]. Indeed, the advent of metagenomics combined with binning methods, single cell genome sequencing as well as high-throughput cultivation methods have contributed to the continuing and exponential increase of available prokaryotic genomes, which in turn has favored the exploration of microbial metabolisms [@Almeida:2021]. In the case of metagenomics, data processing, from raw reads to genome reconstruction, involves various steps and softwares which can represent a major technical obstacle. To overcome this challenge, we developed `SnakeMAGs`, a simple workflow that can process Illumina data, from raw reads to metagenome-assembled genomes (MAGs) classification and relative abundance estimate. Developed with the popular Snakemake workflow management system [@Molder:2021], it can be deployed on various architectures, from single to multicore and from workstation to computer clusters and grids. It is also flexible since users can easily change parameters and/or add new rules. Using termite gut metagenome datasets as an example, we showed that `SnakeMAGs` allowed the recovery of more MAGs encompassing more phyla compared to another similar workflow named ATLAS. Overall, it should make the reconstruction of MAGs more accessible to microbiologists.
+
 
 # Statement of need
+Since the use of MAGs in microbial ecology is nowadays a common practice, several workflows such as MetaWRAP [@Uritskiy:2018], ATLAS [@Kieser:2020] and very recently MAGNETO [@Churcheward:2022], have been developed to automatically reconstruct genomes from metagenomes. However these workflows contain various modules and perform more tasks than only generating MAGs. For instance, they will taxonomically assign the metagenomic reads, create gene catalog or perform functional annotations. They rely on a lot of dependencies, require significant computational resources and regenerate a lot of outputs which are not essential to many research projects. Therefore we developed `SnakeMAGs`, a simple and efficient workflow only design to reconstruct MAGs. It integrates state-of-the-art bioinformatic tools to sequentially perform from Illumina raw reads: quality filtering of the reads with illumina-utils [@Eren:2013], adapter trimming with Trimmomatic [@Bolger:2014]), an optional step of host sequence removal with Bowtie2 [@Langmead:2012]), assembly of the reads with MEGAHIT [@Li:2015], binning of the contigs with MetaBAT2 [@Kang:2019], quality assessment of the bins with CheckM [@Parks:2015], classification of the MAGs with GTDB-Tk [@Chaumeil:2020] and estimation of the relative abundance of these MAGs with CoverM [@Woodcroft:2021] \autoref{fig:1}.
 
-# Citations
+# Performance
+
+
+\autoref{fig:2}.
+
+
+
+# Figures
+
+![Figure 1. \label{fig:1}](Figure_1.png)
+**Figure 1.** Directed acyclic graph describing the main steps performed by `SnakeMAGs`. The names of the softwares used for each step are showed in parentheses.
+
+
+
+![Figure 2. \label{fig:2}](Figure_2.png)
+**Figure 2.** Comparison of the performance of `SnakeMAGs` with another workflow, namely ATLAS v2.9.1 [@Kieser:2020] using 10 termite gut metagenomes. **A.** CPU time (in seconds) required to process each metagenomes. **B.** Number of MAGs reconstructed from each metagenomes. **C.** Number of bacterial MAGs at the phylum level recovered from each workflow.
 
 
 # Acknowledgements
-This work was supported by the FEDER grant InFoBioS n°EX011185 (région Val de Loire, France) and the Centre National de la Recherche Scientifique (CNRS). Ph.D. work of Nachida Tradent (Ph.D. scholarship) was funded by the University of Tours.
+This work was supported by the FEDER grant InFoBioS n°EX011185 (région Val de Loire, France) and the Centre National de la Recherche Scientifique (CNRS). Ph.D. work of Nachida Tadrent (Ph.D. scholarship) was funded by the University of Tours.
+
+# References
