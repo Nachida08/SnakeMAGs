@@ -1,3 +1,7 @@
+################################
+#######    SnakeMAGs     #######
+################################
+
 ##### WORKING DIRECTORY #####
 
 workdir: config["working_dir"]
@@ -24,7 +28,6 @@ SMP, = glob_wildcards(FASTQ_DIR+"{smp}"+SFX_1)
 rule all:
         input:
                 config["host_genomes_directrory"]+"host_genomes_indexing.final",
-                "GTDB_data/GTDB_data.final",
                 expand("{smp}/Classification/{smp}_classification.final", smp=SMP),
                 expand("{smp}/MAGs_abundances/{smp}_coverage.tsv", smp=SMP)
 
@@ -64,7 +67,7 @@ rule adapter_trimming:
                 "{smp}/benchmarks/adapter_trimming.benchmark.txt"
         params: wdir=config['working_dir'], adapters=config['adapters'], trim_params=config['trim_params']
         resources: mem=config['ressources_trim']
-        threads: config['threads_trim']
+        threads: config['threads_trim'] 
 	log: "{smp}/logs/adapter_trimming.log"
         shell:
                 """
@@ -346,31 +349,3 @@ else:
 			(mkdir -p {wildcards.smp}/MAGs_abundances/
 			coverm genome --coupled {input.fq1} {input.fq2} --genome-fasta-files {wildcards.smp}/Bins_quality/MAGs/*.fa -o {output} --threads {threads}) 2> {log}
 			"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
