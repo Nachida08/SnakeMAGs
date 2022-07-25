@@ -1,3 +1,33 @@
+################################
+#######    SnakeMAGs     #######
+################################
+# Tous vos fichers fastq doivent être dans raw_data/xxx.fq.gz
+#
+# L'extension doit être exactement fq.gz
+#
+# Il doit y avoir hg38.fa dans ./
+#
+# Pour des données paired-end (2 fichiers : _R1/_R2):
+# input:
+#     hg38.fa
+#     raw_data/sampleX_c3-pe_R1.fq.gz
+#     raw_data/sampleX_c3-pe_R2.fq.gz
+# output:
+#     mapping/hg38/sampleX_c3-pe.sort.bam
+#
+# processus :
+#     Index du génome de référence
+#     Mapping de deux jeux de données (se_7 et c3-pe)(bwa)
+#         Alignement sur l'index du génome (bwa aln)
+#         Transformation des coordonnées de l'index en coordonnées
+#             génomiques (bwa sampe/samse)
+#     Rangement des données par coordonnées génomique (samtools sort)
+#     Indexer le fichier ordonnée (samtools index)
+#
+################################
+################################
+
+
 ##### WORKING DIRECTORY #####
 
 workdir: config["working_dir"]
@@ -15,6 +45,8 @@ SFX_2 = config["suffix_2"]
 ###### WILDCARDS #####
 
 SMP, = glob_wildcards(FASTQ_DIR+"{smp}"+SFX_1)
+print(SMP)
+
 
 ##### RULES #####
 
@@ -24,13 +56,14 @@ SMP, = glob_wildcards(FASTQ_DIR+"{smp}"+SFX_1)
 rule all:
         input:
                 config["host_genomes_directrory"]+"host_genomes_indexing.final",
-                "GTDB_data/GTDB_data.final",
                 expand("{smp}/Classification/{smp}_classification.final", smp=SMP),
                 expand("{smp}/MAGs_abundances/{smp}_coverage.tsv", smp=SMP)
 
 ### TASK RULES ###
 READS1 = FASTQ_DIR+"{smp}"+SFX_1
+print(SFX_1)
 READS2 = FASTQ_DIR+"{smp}"+SFX_2
+print(SFX_2)
 
 rule quality_filtering:
 	input:
@@ -43,6 +76,7 @@ rule quality_filtering:
 	threads: config['threads_filter']
 	params: email=config['email'], wdir=config['working_dir']
 	resources: mem=config['ressources_filter']
+	#resources: mem=80, mem_mb=80000
 	log: "{smp}/logs/quality_filtering.log"
 	shell:
 		"""
@@ -65,6 +99,7 @@ rule adapter_trimming:
         params: wdir=config['working_dir'], adapters=config['adapters'], trim_params=config['trim_params']
         resources: mem=config['ressources_trim']
         threads: config['threads_trim']
+        #resources: mem=80, mem_mb=80000 
 	log: "{smp}/logs/adapter_trimming.log"
         shell:
                 """
@@ -85,6 +120,7 @@ if HOST_GENOME == 'yes':
 		params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directrory=config['host_genomes_directrory']
 		threads: config['threads_bowtie2']
 		resources: mem=config['ressources_host_filtering']
+		#resources: mem=80, mem_mb=80000
 		log: config["host_genomes_directrory"]+"/logs/host_reads_mapping.log"
 		shell:
 			"""
@@ -103,6 +139,7 @@ if HOST_GENOME == 'yes':
         	params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directrory=config['host_genomes_directrory']
         	threads: config['threads_bowtie2']
         	resources: mem=config['ressources_host_filtering']
+        	#resources: mem=80, mem_mb=80000
 		log: "{smp}/logs/host_reads_mapping.log"
 		shell:
                 	"""
@@ -119,6 +156,7 @@ if HOST_GENOME == 'yes':
 			"{smp}/benchmarks/sam2bam.benchmark.txt"
 		threads: config['threads_samtools']
 		resources: mem=config['ressources_host_filtering']
+		#resources: mem=80, mem_mb=80000
 		log: "{smp}/logs/sam2bam.log"
 		shell:
 			"""
@@ -135,6 +173,7 @@ if HOST_GENOME == 'yes':
 		benchmark:
                         "{smp}/benchmarks/host_reads_removing.benchmark.txt"
 		resources: mem=config['ressources_host_filtering']
+		#resources: mem=80, mem_mb=80000
 		log: "{smp}/logs/host_reads_removing.log"
 		shell:
 			"""
@@ -150,6 +189,7 @@ if HOST_GENOME == 'yes':
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
 		resources: mem=config['ressources_megahit']
+		#resources: mem=90, mem_mb=90000
 		params: min_contig_len=config['min_contig_len'], k_list=config['k_list'], wdir=config['working_dir']
 		log: "{smp}/logs/assembly_reads.log"
 		shell:
@@ -168,6 +208,7 @@ if HOST_GENOME == 'yes':
                 	"{smp}/benchmarks/depth_file_first_step.benchmark.txt"
         	threads: config['threads_bwa']
         	resources: mem=config['ressources_bwa']
+        	#resources: mem=80, mem_mb=80000
 		params: wdir=config['working_dir']
 		log: "{smp}/logs/depth_file_first_step.log"
         	shell:
@@ -189,6 +230,7 @@ else:
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
 		resources: mem=config['ressources_megahit']
+		#resources: mem=90, mem_mb=90000
 		params: min_contig_len=config['min_contig_len'], k_list=config['k_list']
 		log: "{smp}/logs/assembly_reads.log"
 		shell:
@@ -209,6 +251,7 @@ else:
 			"{smp}/benchmarks/depth_file_first_step.benchmark.txt"
 		threads: config['threads_bwa']
 		resources: mem=config['ressources_bwa']
+		#resources: mem=80, mem_mb=80000
 		params: wdir=config['working_dir']
 		log: "{smp}/logs/depth_file_first_step.log"
 		shell:
@@ -228,6 +271,7 @@ rule depth_file_second_step:
 		"{smp}/benchmarks/depth_file_second_step.benchmark.txt"
 	threads: config['threads_samtools']
 	resources: mem=config['ressources_samtools']
+	#resources: mem=80, mem_mb=80000
 	log: "{smp}/logs/depth_file_second_step.log"
 	shell:
 		"""
@@ -244,6 +288,7 @@ rule depth_file:
 	benchmark:
 		"{smp}/benchmarks/depth_file.benchmark.txt"
 	resources: mem=config['ressources_binning']
+	#resources: mem=80, mem_mb=80000
 	log: "{smp}/logs/depth_file.log"
 	shell:
 		"""
@@ -260,6 +305,7 @@ rule binning:
                 "{smp}/benchmarks/binning.benchmark.txt"
         threads: config['threads_metabat']
         resources: mem=config['ressources_binning']
+        #resources: mem=80, mem_mb=80000
         params: seed=config["seed"], minContig=config["minContig"]
 	log: "{smp}/logs/depth_file.log"
         shell:
@@ -279,6 +325,7 @@ rule bins_quality:
                 "{smp}/benchmarks/checkm.benchmark.txt"
 	threads: config['threads_checkm']
 	resources: mem=config['ressources_checkm']
+	#resources: mem=80, mem_mb=80000
 	log: "{smp}/logs/checkm.log"
 	shell:
 		"""
@@ -299,6 +346,7 @@ rule classification:
 	params: GTDB=config['GTDB_data_ref']
 	threads: config['threads_gtdb']
 	resources: mem=config['ressources_gtdb']
+	#resources: mem=80, mem_mb=80000
 	log: "{smp}/logs/classification.log"
 	shell:
 		"""
@@ -321,6 +369,7 @@ if HOST_GENOME == 'yes':
 		params: wdir=config['working_dir']
 		threads: config['threads_coverM']
 		resources: mem=config['ressources_coverM']
+		#resources: mem=80, mem_mb=80000
 		log: "{smp}/logs/abundances.log"
 		shell:
 			"""
@@ -340,6 +389,7 @@ else:
 		params: wdir=config['working_dir']
 		threads: config['threads_coverM']
 		resources: mem=config['ressources_coverM']
+		#resources: mem=80, mem_mb=80000
 		log: "{smp}/logs/abundances.log"
 		shell:
 			"""
