@@ -183,6 +183,9 @@ gunzip insub732_2_R1.fastq.gz insub732_2_R2.fastq.gz chr19.fa.gz
 
 Note: the analysis of these files took 1207.9015 secondes to complete on a Ubuntu 22.04 LTS with an Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz x 40 processor, 96GB of RAM.
 
+# Genome references for host reads filtering
+
+
 # Citations
 
 If you use SnakeMAGs, please cite:
