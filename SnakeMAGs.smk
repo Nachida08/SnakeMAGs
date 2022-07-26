@@ -27,7 +27,7 @@ SMP, = glob_wildcards(FASTQ_DIR+"{smp}"+SFX_1)
 
 rule all:
         input:
-                config["host_genomes_directrory"]+"host_genomes_indexing.final",
+                config["host_genomes_directory"]+"host_genomes_indexing.final",
                 expand("{smp}/Classification/{smp}_classification.final", smp=SMP),
                 expand("{smp}/MAGs_abundances/{smp}_coverage.tsv", smp=SMP)
 
@@ -81,36 +81,36 @@ if HOST_GENOME == 'yes':
 		input:
 			host_genomes=config['host_genomes']
 		output:
-			config["host_genomes_directrory"]+"host_genomes_indexing.final"
+			config["host_genomes_directory"]+"host_genomes_indexing.final"
 		conda: config['BOWTIE2_conda_env']
 		benchmark:
-			config["host_genomes_directrory"]+"benchmarks/host_reads_mapping.benchmark.txt"
-		params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directrory=config['host_genomes_directrory']
+			config["host_genomes_directory"]+"benchmarks/host_reads_mapping.benchmark.txt"
+		params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
 		threads: config['threads_bowtie2']
 		resources: mem=config['ressources_host_filtering']
-		log: config["host_genomes_directrory"]+"/logs/host_reads_mapping.log"
+		log: config["host_genomes_directory"]+"/logs/host_reads_mapping.log"
 		shell:
 			"""
-			(bowtie2-build --threads {threads} {input} {params.host_genomes_directrory}/host_DB
+			(bowtie2-build --threads {threads} {input} {params.host_genomes_directory}/host_DB
 			touch {output}) 2> {log}
                         """
 
 	rule host_reads_mapping:
         	input:
-                	trimmed_1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", trimmed_2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq", index_final=config["host_genomes_directrory"]+"host_genomes_indexing.final"
+                	trimmed_1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", trimmed_2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq", index_final=config["host_genomes_directory"]+"host_genomes_indexing.final"
         	output:
                 	sam="{smp}/QC_fq/host_filtering/{smp}_all.sam"
         	conda:  config['BOWTIE2_conda_env']
 		benchmark:
                 	"{smp}/benchmarks/host_reads_mapping.benchmark.txt"
-        	params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directrory=config['host_genomes_directrory']
+        	params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
         	threads: config['threads_bowtie2']
         	resources: mem=config['ressources_host_filtering']
 		log: "{smp}/logs/host_reads_mapping.log"
 		shell:
                 	"""
 			(mkdir -p {wildcards.smp}/QC_fq/host_filtering
-			bowtie2 -x {params.host_genomes_directrory}/host_DB -1 {input.trimmed_1} -2 {input.trimmed_2} --un-conc {wildcards.smp}/QC_fq/host_filtering/unmapped.fq --al-conc {wildcards.smp}/QC_fq/host_filtering/mapped.fq -S {output.sam} --threads {threads}) 2> {log}
+			bowtie2 -x {params.host_genomes_directory}/host_DB -1 {input.trimmed_1} -2 {input.trimmed_2} --un-conc {wildcards.smp}/QC_fq/host_filtering/unmapped.fq --al-conc {wildcards.smp}/QC_fq/host_filtering/mapped.fq -S {output.sam} --threads {threads}) 2> {log}
 			"""
 	rule sam2bam:
 		input:
