@@ -44,6 +44,8 @@ wget https://github.com/Nachida08/SnakeMAGs/blob/main/SnakeMAGs.smk https://gith
 
 ## Download Genome Taxonomy Database (GTDB)
 GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and unarchived. Because this database is voluminous, we let you decide where you want to store it.
+SnakeMAGs do not download automatically GTDB, you have to do it:
+
 ```
 #Download the latest release (tested with release207)
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
@@ -115,7 +117,7 @@ ressources_trim: 500                                                     #Memory
 ######################
 host_genome: "yes"                                                      #yes or no. An optional step for host-associated samples (eg. termite, human, plant...)
 threads_bowtie2: 100                                                    #The number of threads to run this process. To be adjusted according to your hardware
-host_genomes_directrory: /path/to/working/host_genomes/                 #the directory where the host genome is stored
+host_genomes_directory: /path/to/working/host_genomes/                 #the directory where the host genome is stored
 host_genomes: /path/to/working/host_genomes/host_genomes.fa             #A fasta file containing the DNA sequences of the host genome(s)
 threads_samtools: 100                                                   #The number of threads to run this process. To be adjusted according to your hardware
 ressources_host_filtering: 500                                          #Memory according to tools need
@@ -184,7 +186,7 @@ gunzip insub732_2_R1.fastq.gz insub732_2_R2.fastq.gz chr19.fa.gz
 Note: the analysis of these files took 1207.9015 secondes to complete on a Ubuntu 22.04 LTS with an Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz x 40 processor, 96GB of RAM.
 
 # Genome reference for host reads filtering
-For host-associated samples, one can remove host sequences from the metagenomic reads by mapping these reads against a reference genome. In the case of termite gut metagenomes, we are providing [here]() the relevant files (fasta and index files) from termite genomes.
+For host-associated samples, one can remove host sequences from the metagenomic reads by mapping these reads against a reference genome. In the case of termite gut metagenomes, we are providing [here](https://zenodo.org/record/6908287#.YuAdFXZBx8M) the relevant files (fasta and index files) from termite genomes.
 NB. These steps of mapping generate voluminous files such as .bam and .sam. Depending on your disk space, you might want to delete these files after use.
 
 # Citations

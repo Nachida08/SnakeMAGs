@@ -52,7 +52,7 @@ ressources_trim: 80
 ###########################
 host_genome: "yes"                                                      #yes or no. An optional step for host-associated samples (eg. termite, human, plant...) 
 threads_bowtie2: 30                                                    #The number of threads to run this process. To be adjusted according to your hardware
-host_genomes_directrory: /home/irbi/test_SnakeMAGs/host_genomes/                 #the directory where the host genome is stored
+host_genomes_directory: /home/irbi/test_SnakeMAGs/host_genomes/                 #the directory where the host genome is stored
 host_genomes: /home/irbi/test_SnakeMAGs/host_genomes/chr19.fa             #A fasta file containing the DNA sequences of the host genome(s)
 threads_samtools: 30                                                   #The number of threads to run this process. To be adjusted according to your hardware
 ressources_host_filtering: 80
