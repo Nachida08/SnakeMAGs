@@ -44,6 +44,8 @@ wget https://github.com/Nachida08/SnakeMAGs/blob/main/SnakeMAGs.smk https://gith
 
 ## Download Genome Taxonomy Database (GTDB)
 GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and unarchived. Because this database is voluminous, we let you decide where you want to store it.
+SnakeMAGs do not download automatically GTDB, you have to do it:
+
 ```
 #Download the latest release (tested with release207)
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
