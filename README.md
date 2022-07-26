@@ -117,7 +117,7 @@ ressources_trim: 500                                                     #Memory
 ######################
 host_genome: "yes"                                                      #yes or no. An optional step for host-associated samples (eg. termite, human, plant...)
 threads_bowtie2: 100                                                    #The number of threads to run this process. To be adjusted according to your hardware
-host_genomes_directrory: /path/to/working/host_genomes/                 #the directory where the host genome is stored
+host_genomes_directory: /path/to/working/host_genomes/                 #the directory where the host genome is stored
 host_genomes: /path/to/working/host_genomes/host_genomes.fa             #A fasta file containing the DNA sequences of the host genome(s)
 threads_samtools: 100                                                   #The number of threads to run this process. To be adjusted according to your hardware
 ressources_host_filtering: 500                                          #Memory according to tools need
