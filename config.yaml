@@ -95,3 +95,4 @@ ressources_gtdb: 500                                                   #Memory a
 ### Abundances ###
 ##################
 threads_coverM: 16                                                     #The number of threads to run this process. To be adjusted according to your hardware
+ressources_coverM: 500                                                 #Memory according to tools need
