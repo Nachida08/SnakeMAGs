@@ -1,0 +1,56 @@
+name: GTDBTK
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - anaconda
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=2_gnu
+  - boost=1.70.0=py38h9de70de_1
+  - boost-cpp=1.70.0=h7b93d67_3
+  - bzip2=1.0.8=h7f98852_4
+  - ca-certificates=2022.5.18.1=ha878542_0
+  - capnproto=0.9.1=ha19adfc_4
+  - colorama=0.4.4=pyh9f0ad1d_0
+  - dendropy=4.5.2=pyh3252c3a_0
+  - fastani=1.32=he1c1bb9_0
+  - fasttree=2.1.11=hec16e2b_1
+  - gsl=2.7=he838d99_0
+  - gtdbtk=2.1.0=pyhdfd78af_4
+  - hmmer=3.1b2=3
+  - icu=67.1=he1b5a44_0
+  - ld_impl_linux-64=2.36.1=hea4e1c9_2
+  - libblas=3.9.0=14_linux64_openblas
+  - libcblas=3.9.0=14_linux64_openblas
+  - libffi=3.4.2=h7f98852_5
+  - libgcc-ng=12.1.0=h8d9b700_16
+  - libgfortran-ng=12.1.0=h69a702a_16
+  - libgfortran5=12.1.0=hdcd56e2_16
+  - libgomp=12.1.0=h8d9b700_16
+  - liblapack=3.9.0=14_linux64_openblas
+  - libnsl=2.0.0=h7f98852_0
+  - libopenblas=0.3.20=pthreads_h78a6416_0
+  - libstdcxx-ng=12.1.0=ha89aaad_16
+  - libuuid=2.32.1=h7f98852_1000
+  - libzlib=1.2.12=h166bdaf_0
+  - lz4-c=1.9.3=h9c3ff4c_1
+  - mash=2.3=ha9a2dd8_3
+  - ncurses=6.3=h27087fc_1
+  - numpy=1.22.4=py38h99721a1_0
+  - openssl=3.0.3=h166bdaf_0
+  - pip=22.1.1=pyhd8ed1ab_0
+  - pplacer=1.1.alpha19=h9ee0642_2
+  - prodigal=2.6.3=hec16e2b_4
+  - python=3.8.13=ha86cf86_0_cpython
+  - python_abi=3.8=2_cp38
+  - readline=8.1=h46c0cb4_0
+  - setuptools=62.3.2=py38h578d9bd_0
+  - sqlite=3.38.5=h4ff8645_0
+  - tk=8.6.12=h27826a3_0
+  - tqdm=4.64.0=pyhd8ed1ab_0
+  - wheel=0.37.1=pyhd8ed1ab_0
+  - xz=5.2.5=h516909a_1
+  - zlib=1.2.12=h166bdaf_0
+  - zstd=1.4.9=ha95c52a_0
+prefix: GTDBTK

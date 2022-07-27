@@ -1,0 +1,33 @@
+name: METABAT2
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - anaconda
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=1_gnu
+  - bzip2=1.0.8=h7f98852_4
+  - c-ares=1.18.1=h7f98852_0
+  - ca-certificates=2021.10.8=ha878542_0
+  - curl=7.81.0=h494985f_0
+  - htslib=1.9=h4da6232_3
+  - krb5=1.19.2=h48eae69_3
+  - libcurl=7.81.0=h494985f_0
+  - libdeflate=1.2=h516909a_1
+  - libedit=3.1.20191231=he28a2e2_2
+  - libev=4.33=h516909a_1
+  - libgcc-ng=11.2.0=h1d223b6_12
+  - libgomp=11.2.0=h1d223b6_12
+  - libnghttp2=1.46.0=ha19adfc_0
+  - libssh2=1.10.0=ha35d2d1_2
+  - libstdcxx-ng=11.2.0=he4da1e4_12
+  - libzlib=1.2.11=h36c2ea0_1013
+  - metabat2=2.15=h137b6e9_0
+  - ncurses=6.3=h9c3ff4c_0
+  - openssl=3.0.0=h7f98852_2
+  - perl=5.32.1=1_h7f98852_perl5
+  - tk=8.6.11=h27826a3_1
+  - xz=5.2.5=h516909a_1
+  - zlib=1.2.11=h36c2ea0_1013
+prefix: METABAT2
