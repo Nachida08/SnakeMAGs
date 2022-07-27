@@ -54,13 +54,16 @@ SnakeMAGs do not download automatically GTDB, you have to do it:
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
 #Decompress
 tar -xzvf *tar.gz
+#This will create a folder called release207
 ```
-All you have to do now is to indicate the path to the database folder in the config file, Classification section.
+All you have to do now is to indicate the path to the database folder (in our example, the folder is called release201) in the config file, Classification section.
 
 ## Edit config file
-You need to edit the config.yaml file. In particular, you need to set the correct paths and allocate the proper computational resources (threads, memory), according to your hardware. 
+You need to edit the config.yaml file. In particular, you need to set the correct paths: for the working directory, to specify where are your fastq files, where you want to place the conda environments (that will be created using the provided .yaml files available in [SnakeMAGs_conda_env directory](https://github.com/Nachida08/SnakeMAGs/tree/main/SnakeMAGs_conda_env)), where are the adapters, where is GTDB and optionally where is your host genome reference. 
 
-You also need to set the paths in all the provided .yaml files (available in [SnakeMAGs_conda_env directory](https://github.com/Nachida08/SnakeMAGs/tree/main/SnakeMAGs_conda_env)) that correspond to conda environments (BEDTOOLS.yaml, COVERM.yaml, SAMTOOLS.yaml, BOWTIE2.yaml, GTDBTK.yaml, TRIMMOMATIC.yaml, BWA.yaml, IU.yaml, CHECKM.yaml, MEGAHIT.yaml, METABAT2.yaml). The user can choose these paths.
+Lastly, you need to allocate the proper computational resources (threads, memory) for each of the main steps. These can be optimized according to your hardware. 
+
+
 
 Here is an exemple of a config file:
 
