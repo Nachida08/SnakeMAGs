@@ -21,17 +21,7 @@ suffix_2: "_R2.fastq"                                                    #Main t
 ### Conda environnemnts ###
 ###########################
  
-IU_conda_env: "/path/to/SnakeMAGs_conda_env/IU.yaml"
-TRIMMOMATIC_conda_env: "/path/to/SnakeMAGs_conda_env/TRIMMOMATIC.yaml"
-BOWTIE2_conda_env: "/path/to/SnakeMAGs_conda_env/BOWTIE2.yaml"
-SAMTOOLS_conda_env: "/path/to/SnakeMAGs_conda_env/SAMTOOLS.yaml"
-BEDTOOLS_conda_env: "/path/to/SnakeMAGs_conda_env/BEDTOOLS.yaml"
-MEGAHIT_conda_env: "/path/to/SnakeMAGs_conda_env/MEGAHIT.yaml"
-BWA_conda_env: "/path/to/SnakeMAGs_conda_env/BWA.yaml"
-METABAT2_conda_env: "/path/to/SnakeMAGs_conda_env/METABAT2.yaml"
-CHECKM_conda_env: "/path/to/SnakeMAGs_conda_env/CHECKM.yaml"
-GTDBTK_conda_env: "/path/to/SnakeMAGs_conda_env/GTDBTK.yaml"
-COVERM_conda_env: "/path/to/SnakeMAGs_conda_env/COVERM.yaml"
+conda_env: "/path/to/SnakeMAGs_conda_env/"
 
 #########################
 ### Quality filtering ###
