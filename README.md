@@ -173,7 +173,7 @@ We provide you a small data set in the [test](https://github.com/Nachida08/Snake
 1. Before getting started make sure you have cloned the SnakeMAGs repository or you have downloaded all the necessary files (SnakeMAGs.smk, config.yaml, chr19.fa.gz, insub732_2_R1.fastq.gz, insub732_2_R2.fastq.gz). See the [SnakeMAGs executable](#snakemags-executable) section.
 2. Unzip the fastq files and the host sequences file.
 ```
-gunzip insub732_2_R1.fastq.gz insub732_2_R2.fastq.gz chr19.fa.gz
+gunzip fastqs/insub732_2_R1.fastq.gz fastqs/insub732_2_R2.fastq.gz host_genomes/chr19.fa.gz
 ```
 3. For better organisation put all the read files in the same directory (eg. fastqs) and the host sequences file in a separate directory (eg. host_genomes)
 4. Edit the config file (see [Edit config file](#edit-config-file) section)
