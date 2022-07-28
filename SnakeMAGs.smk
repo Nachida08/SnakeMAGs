@@ -40,7 +40,7 @@ rule quality_filtering:
 		fwd=READS1, rev=READS2
 	output:
 		quality_passed_R1="{smp}/QC_fq/quality_filtering/{smp}-QUALITY_PASSED_R1.fastq", quality_passed_R2="{smp}/QC_fq/quality_filtering/{smp}-QUALITY_PASSED_R2.fastq"
-	conda: config['IU_conda_env']
+	conda: config['conda_env']+"IU.yaml"
 	benchmark:
 		"{smp}/benchmarks/quality_filtering.benchmark.txt"
 	threads: config['threads_filter']
@@ -62,12 +62,12 @@ rule adapter_trimming:
                 quality_passed_R1="{smp}/QC_fq/quality_filtering/{smp}-QUALITY_PASSED_R1.fastq", quality_passed_R2="{smp}/QC_fq/quality_filtering/{smp}-QUALITY_PASSED_R2.fastq"
         output:
                 trimmed_1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", un_trimmed_1="{smp}/QC_fq/adapter_trimming/{smp}_1un.trimmed.fastq", trimmed_2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq", un_trimmed_2="{smp}/QC_fq/adapter_trimming/{smp}_2un.trimmed.fastq"
-        conda: config['TRIMMOMATIC_conda_env']
+        conda: config['conda_env']+"TRIMMOMATIC.yaml"
 	benchmark:
                 "{smp}/benchmarks/adapter_trimming.benchmark.txt"
         params: wdir=config['working_dir'], adapters=config['adapters'], trim_params=config['trim_params']
         resources: mem=config['ressources_trim']
-        threads: config['threads_trim'] 
+        threads: config['threads_trim']
 	log: "{smp}/logs/adapter_trimming.log"
         shell:
                 """
@@ -82,7 +82,7 @@ if HOST_GENOME == 'yes':
 			host_genomes=config['host_genomes']
 		output:
 			config["host_genomes_directory"]+"host_genomes_indexing.final"
-		conda: config['BOWTIE2_conda_env']
+		conda: config['conda_env']+"BOWTIE2.yaml"
 		benchmark:
 			config["host_genomes_directory"]+"benchmarks/host_reads_mapping.benchmark.txt"
 		params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
@@ -100,7 +100,7 @@ if HOST_GENOME == 'yes':
                 	trimmed_1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", trimmed_2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq", index_final=config["host_genomes_directory"]+"host_genomes_indexing.final"
         	output:
                 	sam="{smp}/QC_fq/host_filtering/{smp}_all.sam"
-        	conda:  config['BOWTIE2_conda_env']
+        	conda:  config['conda_env']+"BOWTIE2.yaml"
 		benchmark:
                 	"{smp}/benchmarks/host_reads_mapping.benchmark.txt"
         	params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
@@ -117,7 +117,7 @@ if HOST_GENOME == 'yes':
 			sam="{smp}/QC_fq/host_filtering/{smp}_all.sam"
 		output:
 			bam="{smp}/QC_fq/host_filtering/{smp}_bothEndsUnmapped_sorted.bam"
-		conda: config['SAMTOOLS_conda_env']
+		conda: config['conda_env']+"SAMTOOLS.yaml"
 		benchmark:
 			"{smp}/benchmarks/sam2bam.benchmark.txt"
 		threads: config['threads_samtools']
@@ -134,7 +134,7 @@ if HOST_GENOME == 'yes':
 			bam="{smp}/QC_fq/host_filtering/{smp}_bothEndsUnmapped_sorted.bam"
 		output:
 			fq1="{smp}/QC_fq/host_filtering/{smp}_host_removed_R1.fastq", fq2="{smp}/QC_fq/host_filtering/{smp}_host_removed_R2.fastq"
-		conda: config['BEDTOOLS_conda_env']
+		conda: config['conda_env']+"BEDTOOLS.yaml"
 		benchmark:
                         "{smp}/benchmarks/host_reads_removing.benchmark.txt"
 		resources: mem=config['ressources_host_filtering']
@@ -148,7 +148,7 @@ if HOST_GENOME == 'yes':
 			fq1="{smp}/QC_fq/host_filtering/{smp}_host_removed_R1.fastq", fq2="{smp}/QC_fq/host_filtering/{smp}_host_removed_R2.fastq"
 		output:
 			"{smp}/Assembly/{smp}.contigs.fa"
-		conda: config['MEGAHIT_conda_env']
+		conda: config['conda_env']+"MEGAHIT.yaml"
 		benchmark:
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
@@ -166,7 +166,7 @@ if HOST_GENOME == 'yes':
                 	contigs="{smp}/Assembly/{smp}.contigs.fa", clean_R1="{smp}/QC_fq/host_filtering/{smp}_host_removed_R1.fastq", clean_R2="{smp}/QC_fq/host_filtering/{smp}_host_removed_R2.fastq"
         	output:
                 	sam="{smp}/Binning/{smp}.contigs.sam"
-        	conda: config['BWA_conda_env']
+        	conda: config['conda_env']+"BWA.yaml"
         	benchmark:
                 	"{smp}/benchmarks/depth_file_first_step.benchmark.txt"
         	threads: config['threads_bwa']
@@ -187,7 +187,7 @@ else:
 			fq1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", fq2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq"
 		output:
 			"{smp}/Assembly/{smp}.contigs.fa"
-		conda: config['MEGAHIT_conda_env']
+		conda: config['conda_env']+"MEGAHIT.yaml"
 		benchmark:
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
@@ -207,7 +207,7 @@ else:
 			contigs="{smp}/Assembly/{smp}.contigs.fa", clean_R1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", clean_R2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq"
 		output:
 			sam="{smp}/Binning/{smp}.contigs.sam"
-		conda: config['BWA_conda_env']
+		conda: config['conda_env']+"BWA.yaml"
 		benchmark:
 			"{smp}/benchmarks/depth_file_first_step.benchmark.txt"
 		threads: config['threads_bwa']
@@ -226,7 +226,7 @@ rule depth_file_second_step:
 		sam="{smp}/Binning/{smp}.contigs.sam"
 	output:
 		bam="{smp}/Binning/{smp}.sorted.contigs.bam"
-	conda: config['SAMTOOLS_conda_env']
+	conda: config['conda_env']+"SAMTOOLS.yaml"
 	benchmark:
 		"{smp}/benchmarks/depth_file_second_step.benchmark.txt"
 	threads: config['threads_samtools']
@@ -243,7 +243,7 @@ rule depth_file:
 		bam="{smp}/Binning/{smp}.sorted.contigs.bam"
 	output:
 		depth="{smp}/Binning/{smp}.depth.txt"
-	conda: config["METABAT2_conda_env"]
+	conda: config["conda_env"]+"METABAT2.yaml"
 	benchmark:
 		"{smp}/benchmarks/depth_file.benchmark.txt"
 	resources: mem=config['ressources_binning']
@@ -258,7 +258,7 @@ rule binning:
                 depth="{smp}/Binning/{smp}.depth.txt", contigs="{smp}/Assembly/{smp}.contigs.fa"
         output:
                 "{smp}/Binning/{smp}_binning.final"
-        conda: config["METABAT2_conda_env"]
+        conda: config["conda_env"]+"METABAT2.yaml"
         benchmark:
                 "{smp}/benchmarks/binning.benchmark.txt"
         threads: config['threads_metabat']
@@ -277,7 +277,7 @@ rule bins_quality:
 		"{smp}/Binning/{smp}_binning.final"
 	output:
 		"{smp}/Bins_quality/{smp}_checkM.final"
-	conda: config["CHECKM_conda_env"]
+	conda: config["conda_env"]+"CHECKM.yaml"
 	benchmark:
                 "{smp}/benchmarks/checkm.benchmark.txt"
 	threads: config['threads_checkm']
@@ -296,7 +296,7 @@ rule classification:
 		"{smp}/Bins_quality/{smp}_checkM.final"
 	output:
 		"{smp}/Classification/{smp}_classification.final"
-	conda: config['GTDBTK_conda_env']
+	conda: config['conda_env']+"GTDBTK.yaml"
 	benchmark:
 		"{smp}/benchmarks/classification.benchmark.txt"
 	params: GTDB=config['GTDB_data_ref']
@@ -318,7 +318,7 @@ if HOST_GENOME == 'yes':
 			final="{smp}/Bins_quality/{smp}_checkM.final", fq1="{smp}/QC_fq/host_filtering/{smp}_host_removed_R1.fastq", fq2="{smp}/QC_fq/host_filtering/{smp}_host_removed_R2.fastq"
 		output:
 			"{smp}/MAGs_abundances/{smp}_coverage.tsv"
-		conda: config['COVERM_conda_env']
+		conda: config['conda_env']+"COVERM.yaml"
 		benchmark:
 			"{smp}/benchmarks/abundances.benchmark.txt"
 		params: wdir=config['working_dir']
@@ -337,7 +337,7 @@ else:
 			final="{smp}/Bins_quality/{smp}_checkM.final", fq1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", fq2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq"
 		output:
 			"{smp}/MAGs_abundances/{smp}_coverage.tsv"
-		conda: config['COVERM_conda_env']
+		conda: config['conda_env']+"COVERM.yaml"
 		benchmark:
 			"{smp}/benchmarks/abundances.benchmark.txt"
 		params: wdir=config['working_dir']
@@ -349,3 +349,31 @@ else:
 			(mkdir -p {wildcards.smp}/MAGs_abundances/
 			coverm genome --coupled {input.fq1} {input.fq2} --genome-fasta-files {wildcards.smp}/Bins_quality/MAGs/*.fa -o {output} --threads {threads}) 2> {log}
 			"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

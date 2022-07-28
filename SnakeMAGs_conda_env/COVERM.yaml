@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/COVERM
+name: COVERM
 channels:
   - conda-forge
   - bioconda
@@ -44,4 +44,4 @@ dependencies:
   - starcode=1.4=hec16e2b_2
   - xz=5.2.5=h516909a_1
   - zlib=1.2.12=h166bdaf_0
-prefix: /usr/home/biopatic-Softwares/tadrent/COVERM
+prefix: COVERM

@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/BWA
+name: BWA
 channels:
   - conda-forge
   - bioconda
@@ -14,4 +14,4 @@ dependencies:
   - libzlib=1.2.11=h36c2ea0_1013
   - perl=5.32.1=2_h7f98852_perl5
   - zlib=1.2.11=h36c2ea0_1013
-prefix: /usr/home/biopatic-Softwares/tadrent/BWA
+prefix: BWA

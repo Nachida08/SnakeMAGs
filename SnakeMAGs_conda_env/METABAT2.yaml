@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/METABAT2
+name: METABAT2
 channels:
   - conda-forge
   - bioconda
@@ -30,4 +30,4 @@ dependencies:
   - tk=8.6.11=h27826a3_1
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h36c2ea0_1013
-prefix: /usr/home/biopatic-Softwares/tadrent/METABAT2
+prefix: METABAT2

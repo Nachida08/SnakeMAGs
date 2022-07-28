@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/BEDTOOLS
+name: BEDTOOLS
 channels:
   - conda-forge
   - bioconda
@@ -15,4 +15,4 @@ dependencies:
   - libzlib=1.2.11=h36c2ea0_1013
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h36c2ea0_1013
-prefix: /usr/home/biopatic-Softwares/tadrent/BEDTOOLS
+prefix: BEDTOOLS

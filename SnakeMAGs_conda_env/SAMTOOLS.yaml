@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/SAMTOOLS
+name: SAMTOOLS
 channels:
   - conda-forge
   - bioconda
@@ -28,4 +28,4 @@ dependencies:
   - tk=8.6.12=h27826a3_0
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h36c2ea0_1013
-prefix: /usr/home/biopatic-Softwares/tadrent/SAMTOOLS
+prefix: SAMTOOLS

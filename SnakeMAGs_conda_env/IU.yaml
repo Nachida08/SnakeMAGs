@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/IU
+name: IU
 channels:
   - conda-forge
   - bioconda
@@ -80,4 +80,4 @@ dependencies:
     - pillow==9.0.1
     - setuptools==60.9.2
     - unicodedata2==14.0.0
-prefix: /usr/home/biopatic-Softwares/tadrent/IU
+prefix: IU

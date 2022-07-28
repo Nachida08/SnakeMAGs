@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/MEGAHIT
+name: MEGAHIT
 channels:
   - conda-forge
   - bioconda
@@ -32,4 +32,4 @@ dependencies:
   - zlib=1.2.11=h36c2ea0_1013
   - pip:
     - setuptools==60.9.3
-prefix: /usr/home/biopatic-Softwares/tadrent/MEGAHIT
+prefix: MEGAHIT

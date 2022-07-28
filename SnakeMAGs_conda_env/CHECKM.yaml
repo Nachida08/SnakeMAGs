@@ -1,4 +1,4 @@
-name: /usr/home/biopatic-Softwares/tadrent/CHECKM
+name: CHECKM
 channels:
   - conda-forge
   - bioconda
@@ -65,4 +65,4 @@ dependencies:
   - wheel=0.37.1=pyhd8ed1ab_0
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h36c2ea0_1013
-prefix: /usr/home/biopatic-Softwares/tadrent/CHECKM
+prefix: CHECKM
