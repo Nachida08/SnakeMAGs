@@ -21,7 +21,7 @@ SnakeMAGs performed eight main steps:
 ## Install conda
 The easiest way to install and run SnakeMAGs is to use [conda](https://www.anaconda.com/products/distribution). These package managers will help you to easily install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html).
 
-## Install and activate Snakemake environement
+## Install and activate Snakemake environment
 Note: The workflow was developed with Snakemake 7.0.0
 ```
 conda activate
