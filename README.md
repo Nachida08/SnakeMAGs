@@ -35,7 +35,7 @@ Alternatively, you can also install Snakemake via mamba:
 # If you do not have mamba yet on your machine, you can install it with:
 conda install -n base -c conda-forge mamba
 
-# Then you can install it
+# Then you can install Snakemake
 conda activate base
 mamba create -c conda-forge -c bioconda -n snakemake snakemake
 
