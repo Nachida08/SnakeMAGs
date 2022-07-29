@@ -54,6 +54,6 @@ To demonstrate the benefits of our workflow, we compared it to another Snakemake
 
 
 # Acknowledgements
-This work was supported by the FEDER grant InFoBioS n°EX011185 (région Val de Loire, France) and the Centre National de la Recherche Scientifique (CNRS). Ph.D. work of Nachida Tadrent (Ph.D. scholarship) was funded by the University of Tours.
+This work was supported by the FEDER grant InFoBioS n°EX011185 (région Val de Loire, France) and the Centre National de la Recherche Scientifique (CNRS). Ph.D. work of Nachida Tadrent (Ph.D. scholarship) was funded by the University of Tours. The authors thank Emmanuelle Morin and Hélène Gardon for their valuable advice and feedback during the workflow development.
 
 # References
