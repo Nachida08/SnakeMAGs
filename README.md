@@ -30,6 +30,20 @@ conda install -c bioconda snakemake --prefix path/to/env/SNAKEMAKE
 conda activate path/to/env/SNAKEMAKE/
 ```
 
+Alternatively, you can also install Snakemake via mamba:
+```
+# If you do not have mamba yet on your machine, you can install it with:
+conda install -n base -c conda-forge mamba
+
+# Then you can install it
+conda activate base
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+
+# And activate it
+conda activate snakemake
+
+```
+
 ## SnakeMAGs executable
 The easiest way to procure SnakeMAGs and its related files is to clone the repository using git:
 ```
@@ -51,12 +65,13 @@ SnakeMAGs do not download automatically GTDB, you have to do it:
 
 ```
 #Download the latest release (tested with release207)
+#Note: SnakeMAGs uses GTDBtk v2.1.0 and therefore require release 207 as minimum version. See https://ecogenomics.github.io/GTDBTk/installing/index.html#installing for details.
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
 #Decompress
 tar -xzvf *tar.gz
 #This will create a folder called release207
 ```
-All you have to do now is to indicate the path to the database folder (in our example, the folder is called release201) in the config file, Classification section.
+All you have to do now is to indicate the path to the database folder (in our example, the folder is called release207) in the config file, Classification section.
 
 ## Edit config file
 You need to edit the config.yaml file. In particular, you need to set the correct paths: for the working directory, to specify where are your fastq files, where you want to place the conda environments (that will be created using the provided .yaml files available in [SnakeMAGs_conda_env directory](https://github.com/Nachida08/SnakeMAGs/tree/main/SnakeMAGs_conda_env)), where are the adapters, where is GTDB and optionally where is your host genome reference. 
@@ -167,6 +182,13 @@ If you are working on a cluster with Slurm (tested with version 18.08.7):
 ```{bash}
 snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
+
+If you are working on a cluster with SGE (tested with version 8.1.9).
+```{bash}
+snakemake --snakefile SnakeMAGs.smk --cluster "qsub -cwd -V -q <short.q/long.q> -pe thread {threads} -e cluster_logs/{rule}.e{jobid} -o cluster_logs/{rule}.o{jobid}" --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
+```
+
+
 # Test
 We provide you a small data set in the [test](https://github.com/Nachida08/SnakeMAGs/tree/main/test) directory which will allow you to validate your instalation and take your first steps with SnakeMAGs. This data set is a subset from [ ZymoBiomics Mock Community](https://www.zymoresearch.com/blogs/blog/zymobiomics-microbial-standards-optimize-your-microbiomics-workflow) (250K reads) used in this tutoriel [metagenomics_tutorial](https://github.com/pjtorres/metagenomics_tutorial). 
 
