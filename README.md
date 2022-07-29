@@ -183,7 +183,7 @@ If you are working on a cluster with Slurm (tested with version 18.08.7):
 snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
 
-If you are working on a cluster with SGE (tested with version 8.1.9).
+If you are working on a cluster with SGE (tested with version 8.1.9):
 ```{bash}
 snakemake --snakefile SnakeMAGs.smk --cluster "qsub -cwd -V -q <short.q/long.q> -pe thread {threads} -e cluster_logs/{rule}.e{jobid} -o cluster_logs/{rule}.o{jobid}" --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
 ```
