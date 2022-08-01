@@ -135,16 +135,16 @@ ressources_trim: 150                                                     #Memory
 ### Host filtering ###
 ######################
 host_genome: "yes"                                                      #yes or no. An optional step for host-associated samples (eg. termite, human, plant...)
-threads_bowtie2: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
-host_genomes_directory: /path/to/working/host_genomes/                 #the directory where the host genome is stored
+threads_bowtie2: 50                                                     #The number of threads to run this process. To be adjusted according to your hardware
+host_genomes_directory: /path/to/working/host_genomes/                  #the directory where the host genome is stored
 host_genomes: /path/to/working/host_genomes/host_genomes.fa             #A fasta file containing the DNA sequences of the host genome(s)
-threads_samtools: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
+threads_samtools: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
 ressources_host_filtering: 150                                          #Memory according to tools need
 
 ################
 ### Assembly ###
 ################
-threads_megahit: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
+threads_megahit: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
 min_contig_len: 1000                                                   #Minimum length (in bp) of the assembled contigs
 k_list: "21,31,41,51,61,71,81,91,99,109,119"                           #Kmer size (for further details, see the megahit documentation)
 ressources_megahit: 250                                                #Memory according to tools need
@@ -152,19 +152,19 @@ ressources_megahit: 250                                                #Memory a
 ###############
 ### Binning ###
 ###############
-threads_bwa: 50                                                       #The number of threads to run this process. To be adjusted according to your hardware
+threads_bwa: 50                                                        #The number of threads to run this process. To be adjusted according to your hardware
 ressources_bwa: 150                                                    #Memory according to tools need
-threads_samtools: 50                                                  #The number of threads to run this process. To be adjusted according to your hardware
+threads_samtools: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
 ressources_samtools: 150                                               #Memory according to tools need
 seed: 19860615                                                         #Seed number for reproducible results
-threads_metabat: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
+threads_metabat: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
 minContig: 2500                                                        #Minimum length (in bp) of the contigs
 ressources_binning: 250                                                #Memory according to tools need
 
 ####################
 ### Bins quality ###
 ####################
-threads_checkm: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
+threads_checkm: 50                                                     #The number of threads to run this process. To be adjusted according to your hardware
 ressources_checkm: 250                                                 #Memory according to tools need
 
 ######################
