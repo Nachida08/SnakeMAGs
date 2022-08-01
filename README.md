@@ -205,12 +205,15 @@ Note: the analysis of these files took 1207.9015 secondes to complete on a Ubunt
 
 # Genome reference for host reads filtering
 For host-associated samples, one can remove host sequences from the metagenomic reads by mapping these reads against a reference genome. In the case of termite gut metagenomes, we are providing [here](https://zenodo.org/record/6908287#.YuAdFXZBx8M) the relevant files (fasta and index files) from termite genomes.
+
+Upon request, we can help you to generate these files for your own reference genome and make them available to the community.
+
 NB. These steps of mapping generate voluminous files such as .bam and .sam. Depending on your disk space, you might want to delete these files after use.
 
 # Citations
 
 If you use SnakeMAGs, please cite:
-> Nachida Tadrent, Franck Dedeine, Vincent Hervé (*In preparation*). SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes.
+> Nachida Tadrent, Franck Dedeine, Vincent Hervé (*Submitted*). *SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes.
 
 Please also cite the dependencies:
 - [Snakemake](https://doi.org/10.12688/f1000research.29032.2) : Mölder, F., Jablonski, K. P., Letcher, B., Hall, M. B., Tomkins-tinch, C. H., Sochat, V., Forster, J., Lee, S., Twardziok, S. O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., Nahnsen, S., & Köster, J. (2021) Sustainable data analysis with Snakemake [version 2; peer review: 2 approved]. *F1000Research* 2021, 10:33.
