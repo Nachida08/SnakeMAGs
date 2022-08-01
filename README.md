@@ -25,9 +25,17 @@ The easiest way to install and run SnakeMAGs is to use [conda](https://www.anaco
 Note: The workflow was developed with Snakemake 7.0.0
 ```
 conda activate
-conda create --prefix path/to/env/SNAKEMAKE
-conda install -c bioconda snakemake --prefix path/to/env/SNAKEMAKE
-conda activate path/to/env/SNAKEMAKE/
+
+# First, set up your channel priorities
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+
+# Then, create a new environment for the Snakemake version you require
+conda create -n snakemake_7.0.0 snakemake=7.0.0
+
+# And activate it
+conda activate snakemake_7.0.0
 ```
 
 Alternatively, you can also install Snakemake via mamba:
