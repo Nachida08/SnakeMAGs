@@ -209,7 +209,7 @@ gunzip fastqs/insub732_2_R1.fastq.gz fastqs/insub732_2_R2.fastq.gz host_genomes/
 4. Edit the config file (see [Edit config file](#edit-config-file) section)
 5. Run the test (see [Run SnakeMAGs](#run-snakemags) section) 
 
-Note: the analysis of these files took 1207.9015 secondes to complete on a Ubuntu 22.04 LTS with an Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz x 40 processor, 96GB of RAM.
+Note: the analysis of these files took 1159.32 secondes to complete on a Ubuntu 22.04 LTS with an Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz x 40 processor, 96GB of RAM.
 
 # Genome reference for host reads filtering
 For host-associated samples, one can remove host sequences from the metagenomic reads by mapping these reads against a reference genome. In the case of termite gut metagenomes, we are providing [here](https://zenodo.org/record/6908287#.YuAdFXZBx8M) the relevant files (fasta and index files) from termite genomes.
