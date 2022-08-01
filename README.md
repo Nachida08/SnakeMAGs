@@ -205,7 +205,9 @@ Note: the analysis of these files took 1207.9015 secondes to complete on a Ubunt
 
 # Genome reference for host reads filtering
 For host-associated samples, one can remove host sequences from the metagenomic reads by mapping these reads against a reference genome. In the case of termite gut metagenomes, we are providing [here](https://zenodo.org/record/6908287#.YuAdFXZBx8M) the relevant files (fasta and index files) from termite genomes.
+
 Upon request, we can help you to generate these files for your own reference genome and make them available to the community.
+
 NB. These steps of mapping generate voluminous files such as .bam and .sam. Depending on your disk space, you might want to delete these files after use.
 
 # Citations
