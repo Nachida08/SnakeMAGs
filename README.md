@@ -74,12 +74,12 @@ SnakeMAGs do not download automatically GTDB, you have to do it:
 ```
 #Download the latest release (tested with release207)
 #Note: SnakeMAGs uses GTDBtk v2.1.0 and therefore require release 207 as minimum version. See https://ecogenomics.github.io/GTDBTk/installing/index.html#installing for details.
-wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
+wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_v2_data.tar.gz
 #Decompress
 tar -xzvf *tar.gz
-#This will create a folder called release207
+#This will create a folder called release207_v2
 ```
-All you have to do now is to indicate the path to the database folder (in our example, the folder is called release207) in the config file, Classification section.
+All you have to do now is to indicate the path to the database folder (in our example, the folder is called release207_v2) in the config file, Classification section.
 
 ## Edit config file
 You need to edit the config.yaml file. In particular, you need to set the correct paths: for the working directory, to specify where are your fastq files, where you want to place the conda environments (that will be created using the provided .yaml files available in [SnakeMAGs_conda_env directory](https://github.com/Nachida08/SnakeMAGs/tree/main/SnakeMAGs_conda_env)), where are the adapters, where is GTDB and optionally where is your host genome reference. 
