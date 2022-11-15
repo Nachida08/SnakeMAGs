@@ -218,6 +218,46 @@ Upon request, we can help you to generate these files for your own reference gen
 
 NB. These steps of mapping generate voluminous files such as .bam and .sam. Depending on your disk space, you might want to delete these files after use.
 
+# Use case (in progress)
+During the test phase of the developpement of SnakeMAGs. We apply this workflow to process 10 publicly available termite gut metagenomes from Illumina sequencing to build MAGs. These metagenomes carry the following accession numbers on NCBI database (SRR10402454; SRR14739927; SRR8296321; SRR8296327; SRR8296329; SRR8296337; SRR8296343; DRR097505; SRR7466794; SRR7466795) and they come from five different studies (Waidele et al, 2019); (Tokuda et al, 2018); (Romero Victorica et al, 2020); (Moreira et al, 2021); (Calusinska et al, 2020).
+
+## Download the Illumina pair-end reads
+We use fasterq-dump tool to extract data in FASTQ-format from SRA-accessions. It is a commandline-tool which offers a faster solution for downloading those large files.
+
+```
+# Install and activate sra-tools environment
+## Note: For this study we used sra-tools 2.11.0
+
+conda activate
+conda install -c bioconda sra-tools
+conda activate sra-tools
+
+# download fastqs in the same directory
+mkdir raw_fastq
+cd raw_fastq
+fasterq-dump <SRA-accession> --threads <threads_nbr> --skip-technical --split-3
+```
+
+## Download Genome reference for host reads filtering
+```
+mkdir host_genomes
+cd host_genomes
+wget https://zenodo.org/record/6908287/files/termite_genomes.fasta.gz
+```
+
+## Edit the config file 
+see [Edit config file](#edit-config-file) section
+
+## Run SnakeMAGs
+```
+conda activate snakemake_7.0.0
+mkdir cluster_logs
+snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --mem <memory> -c <cores> -o "cluster_logs/{wildcards}.{rule}.{jobid}.out" -e "cluster_logs/{wildcards}.{rule}.{jobid}.err" ' --jobs <nbr_of_parallel_jobs> --use-conda --conda-frontend conda --conda-prefix /path/to/SnakeMAGs_conda_env/ --jobname "{rule}.{wildcards}.{jobid}" --latency-wait 180 --configfile /path/to/config.yaml --keep-going
+```
+
+## Study results
+Obtained MAGs for each metagenome and their classification are available in this [repository]()
+
 # Citations
 
 If you use SnakeMAGs, please cite:
@@ -236,6 +276,11 @@ Please also cite the dependencies:
 - [CheckM](https://doi.org/10.1101/gr.186072.114) : Parks, D. H., Imelfort, M., Skennerton, C. T., Hugenholtz, P., & Tyson, G. W. (2015). CheckM: Assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. *Genome Research*, 25(7), 1043–1055. 
 - [GTDB-Tk](https://doi.org/10.1093/BIOINFORMATICS/BTAC672) : Chaumeil, P.-A., Mussig, A. J., Hugenholtz, P., Parks, D. H. (2022). GTDB-Tk v2: memory friendly classification with the genome taxonomy database. *Bioinformatics*. 
 - [CoverM](https://github.com/wwood/CoverM)
+- [Waidele et al, 2019](https://doi.org/10.1101/526038) : Waidele, L., Korb, J., Voolstra, C. R., Dedeine, F., & Staubach, F. (2019). Ecological specificity of the metagenome in a set of lower termite species supports contribution of the microbiome to adaptation of the host. Animal Microbiome, 1(1), 1–13. 
+- [Tokuda et al, 2018](https://doi.org/10.1073/pnas.1810550115) : Tokuda, G., Mikaelyan, A., Fukui, C., Matsuura, Y., Watanabe, H., Fujishima, M., & Brune, A. (2018). Fiber-associated spirochetes are major agents of hemicellulose degradation in the hindgut of wood-feeding higher termites. Proceedings of the National Academy of Sciences of the United States of America, 115(51), E11996–E12004. 
+- [Romero Victorica et al, 2020](https://doi.org/10.1038/s41598-020-60850-5) : Romero Victorica, M., Soria, M. A., Batista-García, R. A., Ceja-Navarro, J. A., Vikram, S., Ortiz, M., Ontañon, O., Ghio, S., Martínez-Ávila, L., Quintero García, O. J., Etcheverry, C., Campos, E., Cowan, D., Arneodo, J., & Talia, P. M. (2020). Neotropical termite microbiomes as sources of novel plant cell wall degrading enzymes. Scientific Reports, 10(1), 1–14. 
+- [Moreira et al, 2021](https://doi.org/10.3389/fevo.2021.632590) : Moreira, E. A., Persinoti, G. F., Menezes, L. R., Paixão, D. A. A., Alvarez, T. M., Cairo, J. P. L. F., Squina, F. M., Costa-Leonardo, A. M., Rodrigues, A., Sillam-Dussès, D., & Arab, A. (2021). Complementary Contribution of Fungi and Bacteria to Lignocellulose Digestion in the Food Stored by a Neotropical Higher Termite. Frontiers in Ecology and Evolution, 9(April), 1–12. 
+- [Calusinska et al, 2020](https://doi.org/10.1038/s42003-020-1004-3) : Calusinska, M., Marynowska, M., Bertucci, M., Untereiner, B., Klimek, D., Goux, X., Sillam-Dussès, D., Gawron, P., Halder, R., Wilmes, P., Ferrer, P., Gerin, P., Roisin, Y., & Delfosse, P. (2020). Integrative omics analysis of the termite gut system adaptation to Miscanthus diet identifies lignocellulose degradation enzymes. Communications Biology, 3(1), 1–12. 
 
 # License
 This project is licensed under the CeCILL License - see the [LICENSE](https://github.com/Nachida08/SnakeMAGs/blob/main/LICENCE) file for details.
