@@ -232,7 +232,7 @@ conda activate
 conda install -c bioconda sra-tools
 conda activate sra-tools
 
-# download fastqs in the same directory
+# Download fastqs in the same directory
 mkdir raw_fastq
 cd raw_fastq
 fasterq-dump <SRA-accession> --threads <threads_nbr> --skip-technical --split-3
@@ -246,7 +246,7 @@ wget https://zenodo.org/record/6908287/files/termite_genomes.fasta.gz
 ```
 
 ## Edit the config file 
-see [Edit config file](#edit-config-file) section
+See [Edit config file](#edit-config-file) section
 
 ## Run SnakeMAGs
 ```
