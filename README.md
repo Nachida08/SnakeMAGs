@@ -244,10 +244,11 @@ fasterq-dump <SRA-accession> --threads <threads_nbr> --skip-technical --split-3
 mkdir host_genomes
 cd host_genomes
 wget https://zenodo.org/record/6908287/files/termite_genomes.fasta.gz
+gunzip termite_genomes.fasta.gz
 ```
 
 ## Edit the config file 
-See [Edit config file](#edit-config-file) section
+See [Edit config file](#edit-config-file) section.
 
 ## Run SnakeMAGs
 ```
