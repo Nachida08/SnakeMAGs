@@ -264,7 +264,7 @@ rule binning:
         threads: config['threads_metabat']
         resources: mem=config['ressources_binning']
         params: seed=config["seed"], minContig=config["minContig"]
-	log: "{smp}/logs/depth_file.log"
+	log: "{smp}/logs/binning.log"
         shell:
                 """
                 (mkdir -p {wildcards.smp}/Binning/bins
