@@ -263,7 +263,7 @@ The MAGs reconstructed from each metagenome and their taxonomic classification a
 # Citations
 
 If you use SnakeMAGs, please cite:
-> Tadrent N, Dedeine F and Hervé V. SnakeMAGs: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes [version 1; peer review: awaiting peer review]. F1000Research 2022, 11:1522 (https://f1000research.com/articles/11-1522/v1)
+> Tadrent N, Dedeine F and Hervé V. *SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes [version 1; peer review: awaiting peer review]. F1000Research 2022, 11:1522 (https://f1000research.com/articles/11-1522/v1)
 
 
 Please also cite the dependencies:
