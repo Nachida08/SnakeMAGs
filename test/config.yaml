@@ -28,7 +28,7 @@ conda_env: "/path/to/SnakeMAGs_conda_env/"
 #########################
 email: name.surname@your-univ.com                                        #Your e-mail address
 threads_filter: 10                                                       #The number of threads to run this process. To be adjusted according to your hardware
-ressources_filter: 150                                                   #Memory according to tools need
+resources_filter: 150                                                    #Memory according to tools need
 
 ########################
 ### Adapter trimming ###
@@ -36,53 +36,65 @@ ressources_filter: 150                                                   #Memory
 adapters: /path/to/working/directory/adapters.fa                         #A fasta file contanning a set of various Illumina adaptors (this file is provided and is also available on github)
 trim_params: "2:40:15"                                                   #For further details, see the trimmomatic documentation
 threads_trim: 10                                                         #The number of threads to run this process. To be adjusted according to your hardware
-ressources_trim: 150                                                     #Memory according to tools need
+resources_trim: 150                                                      #Memory according to tools need
 
 ######################
 ### Host filtering ###
 ######################
 host_genome: "yes"                                                      #yes or no. An optional step for host-associated samples (eg. termite, human, plant...)
 threads_bowtie2: 50                                                     #The number of threads to run this process. To be adjusted according to your hardware
-host_genomes_directory: /path/to/working/host_genomes/                  #the directory where the host genome is stored
-host_genomes: /path/to/working/host_genomes/chr19.fa                    #A fasta file containing the DNA sequences of the host genome(s)
+host_genomes_directory: /path/to/working/directory/host_genomes/        #the directory where the host genome is stored
+host_genomes: /path/to/working/directory/host_genomes/chr19.fa          #A fasta file containing the DNA sequences of the host genome(s)
 threads_samtools: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
-ressources_host_filtering: 150                                          #Memory according to tools need
+resources_host_filtering: 150                                           #Memory according to tools need
 
 ################
 ### Assembly ###
 ################
-threads_megahit: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
+threads_megahit: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
 min_contig_len: 1000                                                   #Minimum length (in bp) of the assembled contigs
 k_list: "21,31,41,51,61,71,81,91,99,109,119"                           #Kmer size (for further details, see the megahit documentation)
-ressources_megahit: 250                                                #Memory according to tools need
+resources_megahit: 250                                                 #Memory according to tools need
 
 ###############
 ### Binning ###
 ###############
-threads_bwa: 50                                                       #The number of threads to run this process. To be adjusted according to your hardware
-ressources_bwa: 250                                                    #Memory according to tools need
-threads_samtools: 50                                                  #The number of threads to run this process. To be adjusted according to your hardware
-ressources_samtools: 150                                               #Memory according to tools need
+threads_bwa: 50                                                        #The number of threads to run this process. To be adjusted according to your hardware
+resources_bwa: 250                                                     #Memory according to tools need
+threads_samtools: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
+resources_samtools: 150                                                #Memory according to tools need
 seed: 19860615                                                         #Seed number for reproducible results
-threads_metabat: 50                                                   #The number of threads to run this process. To be adjusted according to your hardware
+threads_metabat: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
 minContig: 2500                                                        #Minimum length (in bp) of the contigs
-ressources_binning: 250                                                #Memory according to tools need
+resources_binning: 250                                                 #Memory according to tools need
 
 ####################
 ### Bins quality ###
 ####################
-threads_checkm: 50                                                    #The number of threads to run this process. To be adjusted according to your hardware
-ressources_checkm: 250                                                 #Memory according to tools need
+#checkM
+threads_checkm: 50                                                       #The number of threads to run this process. To be adjusted according to your hardware
+resources_checkm: 250                                                    #Memory according to tools need (in GB)
+
+#bins_quality_filtering
+completion: 50                                                           #The minimum completion rate of bins
+contamination: 10                                                        #The maximum contamination rate of bins
+parks_quality_score: "no"                                                #yes or no. If yes bins are filtered according to the Parks quality score (completion-5*contamination >= 50)
+
+#GUNC
+gunc: "no"                                                               #yes or no. An optional step to detect and discard chimeric and contaminated genomes using the GUNC tool
+threads_gunc: 50                                                         #The number of threads to run this process. To be adjusted according to your hardware
+resources_gunc: 250                                                      #Memory according to tools need (in GB)
+GUNC_db: /path/to/GUNC_DB/gunc_db_progenomes2.1.dmnd                     #Path to the downloaded GUNC database (see the readme file)
 
 ######################
 ### Classification ###
 ######################
 GTDB_data_ref: /path/to/downloaded/GTDB                                #Path to uncompressed GTDB-Tk reference data (GTDB)
 threads_gtdb: 10                                                       #The number of threads to run this process. To be adjusted according to your hardware
-ressources_gtdb: 250                                                   #Memory according to tools need
+resources_gtdb: 250                                                    #Memory according to tools need
 
 ##################
 ### Abundances ###
 ##################
 threads_coverM: 10                                                     #The number of threads to run this process. To be adjusted according to your hardware
-ressources_coverM: 150                                                 #Memory according to tools need
+resources_coverM: 150                                                  #Memory according to tools need
