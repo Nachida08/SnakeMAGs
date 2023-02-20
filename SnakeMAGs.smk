@@ -45,7 +45,7 @@ rule quality_filtering:
 		"{smp}/benchmarks/quality_filtering.benchmark.txt"
 	threads: config['threads_filter']
 	params: email=config['email'], wdir=config['working_dir']
-	resources: mem=config['ressources_filter']
+	resources: mem=config['resources_filter']
 	log: "{smp}/logs/quality_filtering.log"
 	shell:
 		"""
@@ -66,7 +66,7 @@ rule adapter_trimming:
 	benchmark:
                 "{smp}/benchmarks/adapter_trimming.benchmark.txt"
         params: wdir=config['working_dir'], adapters=config['adapters'], trim_params=config['trim_params']
-        resources: mem=config['ressources_trim']
+        resources: mem=config['resources_trim']
         threads: config['threads_trim']
 	log: "{smp}/logs/adapter_trimming.log"
         shell:
@@ -87,7 +87,7 @@ if HOST_GENOME == 'yes':
 			config["host_genomes_directory"]+"benchmarks/host_reads_mapping.benchmark.txt"
 		params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
 		threads: config['threads_bowtie2']
-		resources: mem=config['ressources_host_filtering']
+		resources: mem=config['resources_host_filtering']
 		log: config["host_genomes_directory"]+"/logs/host_reads_mapping.log"
 		shell:
 			"""
@@ -105,7 +105,7 @@ if HOST_GENOME == 'yes':
                 	"{smp}/benchmarks/host_reads_mapping.benchmark.txt"
         	params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
         	threads: config['threads_bowtie2']
-        	resources: mem=config['ressources_host_filtering']
+        	resources: mem=config['resources_host_filtering']
 		log: "{smp}/logs/host_reads_mapping.log"
 		shell:
                 	"""
@@ -121,7 +121,7 @@ if HOST_GENOME == 'yes':
 		benchmark:
 			"{smp}/benchmarks/sam2bam.benchmark.txt"
 		threads: config['threads_samtools']
-		resources: mem=config['ressources_host_filtering']
+		resources: mem=config['resources_host_filtering']
 		log: "{smp}/logs/sam2bam.log"
 		shell:
 			"""
@@ -137,7 +137,7 @@ if HOST_GENOME == 'yes':
 		conda: config['conda_env']+"BEDTOOLS.yaml"
 		benchmark:
                         "{smp}/benchmarks/host_reads_removing.benchmark.txt"
-		resources: mem=config['ressources_host_filtering']
+		resources: mem=config['resources_host_filtering']
 		log: "{smp}/logs/host_reads_removing.log"
 		shell:
 			"""
@@ -152,7 +152,7 @@ if HOST_GENOME == 'yes':
 		benchmark:
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
-		resources: mem=config['ressources_megahit']
+		resources: mem=config['resources_megahit']
 		params: min_contig_len=config['min_contig_len'], k_list=config['k_list'], wdir=config['working_dir']
 		log: "{smp}/logs/assembly_reads.log"
 		shell:
@@ -170,7 +170,7 @@ if HOST_GENOME == 'yes':
         	benchmark:
                 	"{smp}/benchmarks/depth_file_first_step.benchmark.txt"
         	threads: config['threads_bwa']
-        	resources: mem=config['ressources_bwa']
+        	resources: mem=config['resources_bwa']
 		params: wdir=config['working_dir']
 		log: "{smp}/logs/depth_file_first_step.log"
         	shell:
@@ -191,7 +191,7 @@ else:
 		benchmark:
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
-		resources: mem=config['ressources_megahit']
+		resources: mem=config['resources_megahit']
 		params: min_contig_len=config['min_contig_len'], k_list=config['k_list']
 		log: "{smp}/logs/assembly_reads.log"
 		shell:
@@ -211,7 +211,7 @@ else:
 		benchmark:
 			"{smp}/benchmarks/depth_file_first_step.benchmark.txt"
 		threads: config['threads_bwa']
-		resources: mem=config['ressources_bwa']
+		resources: mem=config['resources_bwa']
 		params: wdir=config['working_dir']
 		log: "{smp}/logs/depth_file_first_step.log"
 		shell:
@@ -230,7 +230,7 @@ rule depth_file_second_step:
 	benchmark:
 		"{smp}/benchmarks/depth_file_second_step.benchmark.txt"
 	threads: config['threads_samtools']
-	resources: mem=config['ressources_samtools']
+	resources: mem=config['resources_samtools']
 	log: "{smp}/logs/depth_file_second_step.log"
 	shell:
 		"""
@@ -246,7 +246,7 @@ rule depth_file:
 	conda: config["conda_env"]+"METABAT2.yaml"
 	benchmark:
 		"{smp}/benchmarks/depth_file.benchmark.txt"
-	resources: mem=config['ressources_binning']
+	resources: mem=config['resources_binning']
 	log: "{smp}/logs/depth_file.log"
 	shell:
 		"""
@@ -262,7 +262,7 @@ rule binning:
         benchmark:
                 "{smp}/benchmarks/binning.benchmark.txt"
         threads: config['threads_metabat']
-        resources: mem=config['ressources_binning']
+        resources: mem=config['resources_binning']
         params: seed=config["seed"], minContig=config["minContig"]
 	log: "{smp}/logs/binning.log"
         shell:
@@ -272,7 +272,7 @@ rule binning:
                 touch {wildcards.smp}/Binning/{wildcards.smp}_binning.final) 2> {log}
                 """
 
-rule bins_quality:
+rule bins_quality_checkM:
 	input:
 		"{smp}/Binning/{smp}_binning.final"
 	output:
@@ -281,19 +281,68 @@ rule bins_quality:
 	benchmark:
                 "{smp}/benchmarks/checkm.benchmark.txt"
 	threads: config['threads_checkm']
-	resources: mem=config['ressources_checkm']
+	resources: mem=config['resources_checkm']
 	log: "{smp}/logs/checkm.log"
 	shell:
 		"""
-		(mkdir -p {wildcards.smp}/Bins_quality/ {wildcards.smp}/Bins_quality/MAGs
+		(mkdir -p {wildcards.smp}/Bins_quality/
 		checkm lineage_wf -f {wildcards.smp}/Bins_quality/CheckM.txt -t {threads} -x fa {wildcards.smp}/Binning/bins/ {wildcards.smp}/Bins_quality
-		awk 'BEGIN {{FS=" "}} {{if ($13>=50 && $14<=10) {{system("cp {wildcards.smp}/Binning/bins/"$1".fa {wildcards.smp}/Bins_quality/MAGs/"$1".fa")}}}}' {wildcards.smp}/Bins_quality/CheckM.txt
+		checkm qa {wildcards.smp}/Bins_quality/lineage.ms {wildcards.smp}/Bins_quality/ --threads {threads} --out_format 2 --tab_table --file {wildcards.smp}/Bins_quality/quality_summary
 		touch {wildcards.smp}/Bins_quality/{wildcards.smp}_checkM.final) 2> {log}
+		"""
+
+rule bins_quality_filtering:
+        input:
+                "{smp}/Bins_quality/{smp}_checkM.final"
+        output:
+                "{smp}/Bins_quality/{smp}_bins_filtering.final"
+        benchmark:
+                "{smp}/benchmarks/bins_filtering.benchmark.txt"
+        params: completion=config['completion'], contamination=config['contamination'], PARKS_SCORE=config['parks_quality_score']
+        log: "{smp}/logs/bins_filtering.log"
+        shell:
+                """
+		mkdir -p {wildcards.smp}/Bins_quality/MAGs_checkM
+		if [ {params.PARKS_SCORE} == 'yes' ]
+		then
+			awk 'BEGIN {{FS=" "}} {{if (($13-(5*$14))>=50) {{system("cp {wildcards.smp}/Binning/bins/"$1".fa {wildcards.smp}/Bins_quality/MAGs_checkM/"$1".fa")}}}}' {wildcards.smp}/Bins_quality/CheckM.txt
+			touch {wildcards.smp}/Bins_quality/{wildcards.smp}_bins_filtering.final
+		else
+			awk 'BEGIN {{FS=" "}} {{if ($13>={params.completion} && $14<={params.contamination}) {{system("cp {wildcards.smp}/Binning/bins/"$1".fa {wildcards.smp}/Bins_quality/MAGs_checkM/"$1".fa")}}}}' {wildcards.smp}/Bins_quality/CheckM.txt
+			touch {wildcards.smp}/Bins_quality/{wildcards.smp}_bins_filtering.final
+		fi
+		"""
+
+
+rule bins_quality_gunc:
+	input:
+		"{smp}/Bins_quality/{smp}_bins_filtering.final"
+	output:
+		"{smp}/Bins_quality/{smp}_gunc.final"
+	conda: config["conda_env"]+"GUNC.yaml"
+	benchmark:
+		"{smp}/benchmarks/GUNC.benchmark.txt"
+	params: GUNC_DB=config['GUNC_db'], GUNC=config['gunc']
+	threads: config['threads_gunc']
+	resources: mem=config['resources_gunc']
+	log: "{smp}/logs/gunc.log"
+	shell:
+		"""
+		if [ {params.GUNC} == 'yes' ]
+		then
+			(mkdir -p {wildcards.smp}/Bins_quality/gunc_output {wildcards.smp}/Bins_quality/MAGs
+			gunc run --db_file {params.GUNC_DB} --input_dir {wildcards.smp}/Bins_quality/MAGs_checkM --threads {threads} --out_dir {wildcards.smp}/Bins_quality/gunc_output
+			awk 'BEGIN {{FS=" "}} {{if ($13=="True") {{system("cp {wildcards.smp}/Bins_quality/MAGs_checkM/"$1".fa {wildcards.smp}/Bins_quality/MAGs/"$1".fa")}}}}' {wildcards.smp}/Bins_quality/gunc_output/GUNC.progenomes_2.1.maxCSS_level.tsv
+			touch {wildcards.smp}/Bins_quality/{wildcards.smp}_gunc.final) 2> {log}
+		else
+			mv {wildcards.smp}/Bins_quality/MAGs_checkM {wildcards.smp}/Bins_quality/MAGs
+			touch {wildcards.smp}/Bins_quality/{wildcards.smp}_gunc.final
+		fi
 		"""
 
 rule classification:
 	input:
-		"{smp}/Bins_quality/{smp}_checkM.final"
+		"{smp}/Bins_quality/{smp}_gunc.final"
 	output:
 		"{smp}/Classification/{smp}_classification.final"
 	conda: config['conda_env']+"GTDBTK.yaml"
@@ -301,7 +350,7 @@ rule classification:
 		"{smp}/benchmarks/classification.benchmark.txt"
 	params: GTDB=config['GTDB_data_ref']
 	threads: config['threads_gtdb']
-	resources: mem=config['ressources_gtdb']
+	resources: mem=config['resources_gtdb']
 	log: "{smp}/logs/classification.log"
 	shell:
 		"""
@@ -315,7 +364,7 @@ if HOST_GENOME == 'yes':
 
 	rule MAGs_abundances:
 		input:
-			final="{smp}/Bins_quality/{smp}_checkM.final", fq1="{smp}/QC_fq/host_filtering/{smp}_host_removed_R1.fastq", fq2="{smp}/QC_fq/host_filtering/{smp}_host_removed_R2.fastq"
+			final="{smp}/Bins_quality/{smp}_gunc.final", fq1="{smp}/QC_fq/host_filtering/{smp}_host_removed_R1.fastq", fq2="{smp}/QC_fq/host_filtering/{smp}_host_removed_R2.fastq"
 		output:
 			"{smp}/MAGs_abundances/{smp}_coverage.tsv"
 		conda: config['conda_env']+"COVERM.yaml"
@@ -323,7 +372,7 @@ if HOST_GENOME == 'yes':
 			"{smp}/benchmarks/abundances.benchmark.txt"
 		params: wdir=config['working_dir']
 		threads: config['threads_coverM']
-		resources: mem=config['ressources_coverM']
+		resources: mem=config['resources_coverM']
 		log: "{smp}/logs/abundances.log"
 		shell:
 			"""
@@ -334,7 +383,7 @@ if HOST_GENOME == 'yes':
 else:
 	rule MAGs_abundances:
 		input:
-			final="{smp}/Bins_quality/{smp}_checkM.final", fq1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", fq2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq"
+			final="{smp}/Bins_quality/{smp}_gunc.final", fq1="{smp}/QC_fq/adapter_trimming/{smp}_1.trimmed.fastq", fq2="{smp}/QC_fq/adapter_trimming/{smp}_2.trimmed.fastq"
 		output:
 			"{smp}/MAGs_abundances/{smp}_coverage.tsv"
 		conda: config['conda_env']+"COVERM.yaml"
@@ -342,38 +391,11 @@ else:
 			"{smp}/benchmarks/abundances.benchmark.txt"
 		params: wdir=config['working_dir']
 		threads: config['threads_coverM']
-		resources: mem=config['ressources_coverM']
+		resources: mem=config['resources_coverM']
 		log: "{smp}/logs/abundances.log"
 		shell:
 			"""
 			(mkdir -p {wildcards.smp}/MAGs_abundances/
 			coverm genome --coupled {input.fq1} {input.fq2} --genome-fasta-files {wildcards.smp}/Bins_quality/MAGs/*.fa -o {output} --threads {threads}) 2> {log}
 			"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
