@@ -12,7 +12,7 @@ SnakeMAGs performed eight main steps:
 - Binning
 - Evaluation of the quality of the bins
 - Classification of the MAGs
-- Estimation of the abundance of the MAGs
+- Estimation of the relative abundance of the MAGs
 
 
 ![scheme of workflow](SnakeMAGs_schema.jpg?raw=true)
@@ -284,7 +284,7 @@ snakemake --snakefile SnakeMAGs.smk --cluster 'sbatch -p <cluster_partition> --m
 ```
 
 ## Study results
-The MAGs reconstructed from each metagenome and their taxonomic classification are available in this [repository]().
+The MAGs reconstructed from each metagenome and their taxonomic classification are available in this [repository](https://doi.org/10.5281/zenodo.7661004).
 
 # Citations
 
