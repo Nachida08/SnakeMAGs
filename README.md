@@ -98,7 +98,7 @@ gunc download_db -db progenomes /path/to/GUNC_DB
 All you have to do now is to indicate the path to the GUNC database file in the config file,  Bins quality section.
 
 ## Edit config file
-You need to edit the config.yaml file. In particular, you need to set the correct paths: for the working directory, to specify where are your fastq files, where you want to place the conda environments (that will be created using the provided .yaml files available in [SnakeMAGs_conda_env directory](https://github.com/Nachida08/SnakeMAGs/tree/main/SnakeMAGs_conda_env)), where are the adapters, where is GTDB and optionally where is your host genome reference.
+You need to edit the config.yaml file. In particular, you need to set the correct paths: for the working directory, to specify where are your fastq files, where you want to place the conda environments (that will be created using the provided .yaml files available in [SnakeMAGs_conda_env directory](https://github.com/Nachida08/SnakeMAGs/tree/main/SnakeMAGs_conda_env)), where are the adapters, where is GTDB and optionally where is the GUNC database and where is your host genome reference.
 
 Lastly, you need to allocate the proper computational resources (threads, memory) for each of the main steps. These can be optimized according to your hardware.
 
@@ -289,7 +289,7 @@ The MAGs reconstructed from each metagenome and their taxonomic classification a
 # Citations
 
 If you use SnakeMAGs, please cite:
-> Tadrent N, Dedeine F and Hervé V. *SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes [version 1; peer review: awaiting peer review]. F1000Research 2022, 11:1522 (https://doi.org/10.12688/f1000research.128091.1)
+> Tadrent N, Dedeine F and Hervé V. *SnakeMAGs*: a simple, efficient, flexible and scalable workflow to reconstruct prokaryotic genomes from metagenomes [version 1; peer review: 1 approved, 1 approved with reservations]. F1000Research 2022, 11:1522 (https://doi.org/10.12688/f1000research.128091.1)
 
 
 Please also cite the dependencies:
