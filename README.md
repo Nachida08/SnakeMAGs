@@ -72,14 +72,14 @@ GTDB-Tk requires ~66G+ of external data (GTDB) that need to be downloaded and un
 SnakeMAGs do not download automatically GTDB, you have to do it:
 
 ```
-#Download the latest release (tested with release207)
+#Download the latest release (tested with release207 and also more recently with release214)
 #Note: SnakeMAGs uses GTDBtk v2.1.0 and therefore require release 207 as minimum version. See https://ecogenomics.github.io/GTDBTk/installing/index.html#installing for details.
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_v2_data.tar.gz
 #Decompress
 tar -xzvf *tar.gz
 #This will create a folder called release207_v2
 ```
-All you have to do now is to indicate the path to the database folder (in our example, the folder is called release207_v2) in the config file, Classification section.
+All you have to do now is to indicate the path to the database folder (in our example, the folder is called release207_v2 but we also tested it recently with release214) in the config file, Classification section.
 
 ## Download the GUNC database (required if gunc: "yes")
 GUNC accepts either a progenomes or GTDB based reference database. Both can be downloaded using the ```gunc download_db``` command. For our study we used the default proGenome-derived GUNC database. It requires less resources with similar performance.
