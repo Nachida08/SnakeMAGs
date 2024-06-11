@@ -88,7 +88,7 @@ GUNC accepts either a progenomes or GTDB based reference database. Both can be d
 conda activate
 # Install and activate GUNC environment
 conda create --prefix /path/to/gunc_env
-conda install -c bioconda metabat2 --prefix /path/to/gunc_env
+conda install -c bioconda gunc --prefix /path/to/gunc_env
 source activate /path/to/gunc_env
 
 #Download the proGenome-derived GUNC database (tested with gunc_db_progenomes2.1)
