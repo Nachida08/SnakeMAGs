@@ -30,6 +30,7 @@ conda activate
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
+conda config --add channels anaconda
 
 # Then, create a new environment for the Snakemake version you require
 conda create -n snakemake_7.0.0 snakemake=7.0.0
