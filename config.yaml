@@ -81,7 +81,7 @@ contamination: 10                                                        #The ma
 parks_quality_score: "no"                                                #yes or no. If yes bins are filtered according to the Parks quality score (completion-5*contamination >= 50)
 
 #GUNC
-gunc: "no"                                                               #yes or no. An optional step to detect and discard chimeric and contaminated genomes using the GUNC tool
+gunc: "yes"                                                              #yes (recommended) or no. An optional step to detect and discard chimeric and contaminated genomes using the GUNC tool
 threads_gunc: 50                                                         #The number of threads to run this process. To be adjusted according to your hardware
 resources_gunc: 250                                                      #Memory according to tools need (in GB)
 GUNC_db: /path/to/GUNC_DB/gunc_db_progenomes2.1.dmnd                     #Path to the downloaded GUNC database (see the readme file)
