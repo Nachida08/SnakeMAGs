@@ -27,7 +27,6 @@ SMP, = glob_wildcards(FASTQ_DIR+"{smp}"+SFX_1)
 
 rule all:
         input:
-                config["host_genomes_directory"]+"host_genomes_indexing.final",
                 expand("{smp}/Classification/{smp}_classification.final", smp=SMP),
                 expand("{smp}/MAGs_abundances/{smp}_coverage.tsv", smp=SMP)
 
@@ -88,7 +87,7 @@ if HOST_GENOME == 'yes':
 		params: wdir=config['working_dir'], host_genomes=config['host_genomes'], host_genomes_directory=config['host_genomes_directory']
 		threads: config['threads_bowtie2']
 		resources: mem=config['resources_host_filtering']
-		log: config["host_genomes_directory"]+"/logs/host_reads_mapping.log"
+		log: config["host_genomes_directory"]+"logs/host_reads_mapping.log"
 		shell:
 			"""
 			(bowtie2-build --threads {threads} {input} {params.host_genomes_directory}/host_DB
@@ -192,7 +191,7 @@ else:
 			"{smp}/benchmarks/assembly_reads.benchmark.txt"
 		threads: config['threads_megahit']
 		resources: mem=config['resources_megahit']
-		params: min_contig_len=config['min_contig_len'], k_list=config['k_list']
+		params: min_contig_len=config['min_contig_len'], k_list=config['k_list'], wdir=config['working_dir']
 		log: "{smp}/logs/assembly_reads.log"
 		shell:
 			"""
@@ -398,4 +397,3 @@ else:
 			(mkdir -p {wildcards.smp}/MAGs_abundances/
 			coverm genome --coupled {input.fq1} {input.fq2} --genome-fasta-files {wildcards.smp}/Bins_quality/MAGs/*.fa -o {output} --threads {threads}) 2> {log}
 			"""
-
