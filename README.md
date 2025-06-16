@@ -75,10 +75,10 @@ SnakeMAGs do not download automatically GTDB, you have to do it:
 ```
 #Download the latest release (tested with release207 and also more recently with release214)
 #Note: SnakeMAGs uses GTDBtk v2.1.0 and therefore require release 207 as minimum version. See https://ecogenomics.github.io/GTDBTk/installing/index.html#installing for details.
-wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_v2_data.tar.gz
+wget https://data.gtdb.ecogenomic.org/releases/release214/214.1/auxillary_files/gtdbtk_r214_data.tar.gz
 #Decompress
 tar -xzvf *tar.gz
-#This will create a folder called release207_v2
+#This will create a folder called release214
 ```
 All you have to do now is to indicate the path to the database folder (in our example, the folder is called release207_v2 but we also tested it recently with release214) in the config file, Classification section.
 
